@@ -46,7 +46,7 @@ require_once(__DIR__ . '/../../../app/session.php');
 
   <div class="container-sm mt-2">
     <div class="d-flex flex-row-reverse ">
-      <p><?php echo $_SESSION['name']?> さん ログイン中</p>
+      <p><?= $_SESSION['name']?> さん ログイン中</p>
     </div>
     <div class="d-flex flex-row-reverse ">
       <a href="../../login/logout.php">ログアウト</a>
@@ -58,15 +58,15 @@ require_once(__DIR__ . '/../../../app/session.php');
   <br>
 
   <form method="POST" action="recipes_edit_check.php">
-    <input type="hidden" name="code" value="<?php echo $code; ?>">
+    <input type="hidden" name="code" value="<?= $code; ?>">
     レシピ名
     <br>
-    <input type="text" name="name" style="width:200px" value="<?php echo $name; ?>">
+    <input type="text" name="name" style="width:200px" value="<?= $name; ?>">
     <br>
     <br>
     レシピ内容
     <br>
-    <textarea name="text" id="" cols="30" rows="10"><?php echo $text;?></textarea>
+    <textarea name="text" id="" cols="30" rows="10"><?= $text;?></textarea>
     <br>
     <input type="button" onclick="history.back()" value="戻る">
     <input type="submit" value="確認">

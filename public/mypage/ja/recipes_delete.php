@@ -44,7 +44,7 @@ require_once(__DIR__ . '/../../../app/session.php');
 
   <div class="container-sm mt-2">
     <div class="d-flex flex-row-reverse ">
-      <p><?php echo $_SESSION['name']?> さん ログイン中</p>
+      <p><?= $_SESSION['name']?> さん ログイン中</p>
     </div>
     <div class="d-flex flex-row-reverse ">
       <a href="../../login/logout.php">ログアウト</a>
@@ -54,12 +54,12 @@ require_once(__DIR__ . '/../../../app/session.php');
   <br>
   レシピ名
   <br>
-  <?php echo $name; ?>
+  <?= $name; ?>
   <br>
   このレシピを削除してもよろしいですか<br>
   <br>
   <form method="post" action="recipes_delete_done.php">
-    <input type="hidden" name="code" value="<?php echo $code; ?>">
+    <input type="hidden" name="code" value="<?= $code; ?>">
     <input type="button" onclick="history.back()" value="戻る">
     <input type="submit" value="OK">
   </form>

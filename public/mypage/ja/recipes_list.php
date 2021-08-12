@@ -41,7 +41,7 @@ require_once(__DIR__ . '/../../../app/session.php');
 
   <div class="container-sm mt-2">
     <div class="d-flex flex-row-reverse ">
-      <p><?php echo $_SESSION['name']?> さん ログイン中</p>
+      <p><?= $_SESSION['name']?> さん ログイン中</p>
     </div>
     <div class="d-flex flex-row-reverse ">
       <a href="../../login/logout.php">ログアウト</a>
@@ -55,8 +55,8 @@ require_once(__DIR__ . '/../../../app/session.php');
     <form method="post" action="branch.php">
 
     <?php while($rec = $stmt->fetch()){ ?>
-      <input type="radio" name="code" value="<?php echo $rec['code']; ?>">
-      <?php echo $rec['recipe_name']; ?>
+      <input type="radio" name="code" value="<?= $rec['code']; ?>">
+      <?= $rec['recipe_name']; ?>
       <br>
     <?php } ?>
 

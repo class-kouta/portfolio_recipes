@@ -16,7 +16,7 @@ require_once(__DIR__ . '/../../../app/session.php');
 
   <div class="container-sm mt-2">
     <div class="d-flex flex-row-reverse ">
-      <p><?php echo $_SESSION['name']?> さん ログイン中</p>
+      <p><?= $_SESSION['name']?> さん ログイン中</p>
     </div>
     <div class="d-flex flex-row-reverse ">
       <a href="../../login/logout.php">ログアウト</a>
@@ -55,11 +55,11 @@ require_once(__DIR__ . '/../../../app/session.php');
   ?>
 
   レシピ名<br>
-  <?php echo $name;?>
+  <?= $name;?>
   <br>
   <br>
   レシピ内容<br>
-  <?php echo $text;?>
+  <?= $text;?>
   <br>
   <br>
 
