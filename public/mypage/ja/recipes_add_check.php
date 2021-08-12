@@ -61,7 +61,7 @@ require_once(__DIR__ . '/../../../app/session.php');
     echo '<input type="button" onclick="history.back()" value="戻る">';
     echo '</form>';
   }else{
-    echo'<form method="POST" action="recipes_add_done.php">';
+    echo'<form method="post" action="recipes_add_done.php">';
     echo'<input type="hidden" name="name" value="'.$name.'">';
     echo'<input type="hidden" name="text" value="'.$text.'">';
     echo'<br>';

@@ -22,26 +22,12 @@ require_once(__DIR__ . '/../../../app/session.php');
       </div>
     </div>
 
-    <!-- スタッフ追加<br>
-    <br>
-    <form method="post" action="staff_add_check.php">
-      スタッフ名を入力してください。<br>
-      <input type="text" name="name" style="width: 200px;"><br>
-      パスワードを入力してください。<br>
-      <input type="password" name="pass" style="width: 100px;"><br>
-      パスワードをもう一度入力してください。<br>
-      <input type="password" name="pass2" style="width: 100px;"><br>
-      <br>
-      <input type="button" onclick="history.back()" value="戻る">
-      <input type="submit" value="OK">
-    </form> -->
-
     <main class="container-sm mx-2 my-3">
       <!-- <div class="mb-5">
         <h1 class="fs-3 text-primary">レシピ追加</h1>
       </div> -->
 
-      <form method="POST" action="recipes_add_check.php">
+      <form method="post" action="recipes_add_check.php">
 
         <!-- レシピ名 -->
         <div class="mb-3">

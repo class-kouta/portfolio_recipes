@@ -57,7 +57,7 @@ require_once(__DIR__ . '/../../../app/session.php');
   <br>
   <br>
 
-  <form method="POST" action="recipes_edit_check.php">
+  <form method="post" action="recipes_edit_check.php">
     <input type="hidden" name="code" value="<?= $code; ?>">
     レシピ名
     <br>
