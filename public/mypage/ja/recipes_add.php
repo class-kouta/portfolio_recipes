@@ -43,8 +43,8 @@ require_once(__DIR__ . '/../../../app/session.php');
         <div class="mb-3">
           <label for="text" class="form-label">レシピ内容</label>
           <div class="row">
-            <div class="col-4">
-              <textarea name="text" class="form-control" id="text" rows="3"></textarea>
+            <div class="col-7">
+              <textarea name="text" class="form-control" id="text" rows="20" ></textarea>
             </div>
           </div>
         </div>

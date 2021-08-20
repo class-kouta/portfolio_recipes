@@ -30,16 +30,30 @@
   }
 
   // メールアドレスのチェック（空白、半角、他何かあるか）
-
+  if($mail === ''){
+    echo 'メールアドレス：入力されていません。';
+    echo '<br>';
+  } else{
+    echo 'メールアドレス：';
+    echo $mail;
+    echo '<br>';
+    echo '<br>';
+  }
 
   // パスワードのチェック（空白、一致するかどうか、他何かあるか）
   if($pass ===''){
     echo 'パスワード：入力されていません。<br>';
     echo'<br>';
-  }
-  if($pass !== $pass2){
+    echo'<br>';
+  } else if ($pass !== $pass2){
     echo 'パスワード：一致しません。<br>';
     echo'<br>';
+    echo'<br>';
+  } else {
+    echo 'パスワード：';
+    echo str_repeat('*', strlen($pass));
+    echo '<br>';
+    echo '<br>';
   }
 
   // 処理

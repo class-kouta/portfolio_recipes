@@ -59,7 +59,7 @@ require_once(__DIR__ . '/../../../app/session.php');
   <br>
   <br>
   レシピ内容<br>
-  <?= $text;?>
+  <?= nl2br($text);?>
   <br>
   <br>
 

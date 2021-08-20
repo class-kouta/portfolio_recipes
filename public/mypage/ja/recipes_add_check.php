@@ -52,7 +52,7 @@ require_once(__DIR__ . '/../../../app/session.php');
   }else{
     echo 'レシピ内容：';
     echo '<br>';
-    echo $text;
+    echo nl2br($text);
     echo '<br>';
   }
 

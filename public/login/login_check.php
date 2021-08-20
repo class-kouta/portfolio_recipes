@@ -32,7 +32,14 @@ try{
     echo 'パスワード：入力されていません。<br>';
     echo'<br>';
   }
-  $pass2 = $result['password'];
+
+  ////////////// アドレス未記入で送信した際のエラーメッセージを防ぐ //////////////
+  if(!isset($result['password'])){
+    $pass2 = '';
+  }else{
+    $pass2 = $result['password'];
+  }
+
   if(password_verify($pass,$pass2) === false){
     echo 'メールアドレス または パスワード が間違っています';
     echo'<br>';

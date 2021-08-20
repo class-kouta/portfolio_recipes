@@ -38,13 +38,8 @@
     echo '<br>';
     echo 'ご入会ありがとうございます。';
     echo'<br>';
-    echo 'マイページはこちらです。';
-    echo'<br>';
-    echo'<br>';
-    echo'<a href="../mypage/mypage.php">マイページ</a>';
-    echo'<br>';
-    echo'<br>';
-    echo'<br>';
+    echo'<a href="login.html">ログインはこちらから</a>';
+
 
   }catch(Exception $e){
     echo'ただいま障害により大変ご迷惑をおかけしております';  
@@ -57,8 +52,6 @@
   }
 
   ?>
-    <a href="login.html">ログイン画面へ</a>
-
 
   </body>
 </html>

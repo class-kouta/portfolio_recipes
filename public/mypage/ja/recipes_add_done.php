@@ -49,11 +49,8 @@ require_once(__DIR__ . '/../../../app/session.php');
     
     ////////// DB を切断 ////////////
     $dbh = null;
-    
-    echo $name;
-    echo 'を追加しました';
-    echo '<br>';
 
+    header('Location:recipes_list.php'); 
 
   }catch(Exception $e){
     echo $e;
@@ -62,8 +59,6 @@ require_once(__DIR__ . '/../../../app/session.php');
   }
 
   ?>
-
-    <a href="recipes_list.php">和食レシピ一覧に戻る</a>
 
   </body>
 </html>
