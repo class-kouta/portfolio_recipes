@@ -7,7 +7,7 @@ use App\Utils;
 $dbh = Database::getInstance();  //DB接続
 
 try{
-  
+
   $post = Utils::sanitize($_POST);
   $mail = $post['mail'];
   $pass = $post['pass'];
@@ -22,19 +22,19 @@ try{
   $result = $stmt->fetch();
 
   /////////////// メールアドレスチェック //////////////
-  if($mail === ''){
-    echo 'ニックネーム：入力されていません。';
+  if(empty($mail)){
+    echo 'メールアドレス：入力されていません。';
     echo '<br>';
   }
 
   /////////////// パスワードチェック/////////////
-  if($pass ===''){
+  if(empty($pass)){
     echo 'パスワード：入力されていません。<br>';
     echo'<br>';
   }
 
   ////////////// アドレス未記入で送信した際のエラーメッセージを防ぐ //////////////
-  if(!isset($result['password'])){
+  if(!isset($result['password'])){    // これ書かないと変数nullのエラー出る
     $pass2 = '';
   }else{
     $pass2 = $result['password'];
@@ -44,8 +44,8 @@ try{
     echo 'メールアドレス または パスワード が間違っています';
     echo'<br>';
     echo'<br>';
-  } 
-  
+  }
+
   if($mail === '' || $pass === '' || password_verify($pass,$pass2) === false){
     echo '<form>';
     echo '<input type="button" onclick="history.back()" value="戻る">';
@@ -64,12 +64,12 @@ try{
   }
 
 }catch(Exception $e){
-  
-  echo'ただいま障害により大変ご迷惑をおかけしております';  
-  echo'<br>';  
-  echo'<br>';  
-  echo'エラー理由：';  
-  echo'<br>';  
+
+  echo'ただいま障害により大変ご迷惑をおかけしております';
+  echo'<br>';
+  echo'<br>';
+  echo'エラー理由：';
+  echo'<br>';
   echo $e->getMessage();
   exit();
 
