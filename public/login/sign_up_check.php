@@ -18,12 +18,14 @@
   $pass = $post['pass'];
   $pass2 = $post['pass2'];
 
-  // ニックネームのチェック（空白、５文字以内）
+  // ニックネームのチェック
   if(empty($name)){
     echo 'ニックネーム：入力されていません。';
     echo '<br>';
+    echo '<br>';
   } else if(5 < mb_strlen($name)){
     echo 'ニックネーム：５文字以内で入力してください';
+    echo '<br>';
     echo '<br>';
   } else{
     echo 'ニックネーム：'.$name;
@@ -31,18 +33,22 @@
     echo '<br>';
   }
 
-  // メールアドレスのチェック（空白、半角、他何かあるか）
-  if($mail === ''){
+  // メールアドレスのチェック
+  if(empty($mail)){
     echo 'メールアドレス：入力されていません。';
     echo '<br>';
+    echo '<br>';
+  } else if(!filter_var($mail, FILTER_VALIDATE_EMAIL)){
+    echo 'メールアドレス：正しい形式で入力してください';
+    echo '<br>';
+    echo '<br>';
   } else{
-    echo 'メールアドレス：';
-    echo $mail;
+    echo 'メールアドレス：'.$mail;
     echo '<br>';
     echo '<br>';
   }
 
-  // パスワードのチェック（空白、一致するかどうか、他何かあるか）
+  // パスワードのチェック
   if($pass ===''){
     echo 'パスワード：入力されていません。<br>';
     echo'<br>';
@@ -59,7 +65,7 @@
   }
 
   // 処理
-  if($name === '' || $pass === '' || $pass !== $pass2){
+  if(empty($name) || empty($mail) || !filter_var($mail, FILTER_VALIDATE_EMAIL) || empty($pass) || $pass !== $pass2){
     echo '<form>';
     echo '<input type="button" onclick="history.back()" value="戻る">';
     echo '</form>';
