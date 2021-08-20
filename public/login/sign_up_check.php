@@ -5,10 +5,10 @@
     <title>漢レシピ</title>
   </head>
   <body>
-    
+
   <?php
-  
-  require_once(__DIR__ . '/../../app/config.php'); 
+
+  require_once(__DIR__ . '/../../app/config.php');
   use App\Utils;
 
   // $_POSTを消毒
@@ -18,13 +18,15 @@
   $pass = $post['pass'];
   $pass2 = $post['pass2'];
 
-  // ニックネームのチェック（空白、１０文字以内、他何かあるか）
-  if($name === ''){
+  // ニックネームのチェック（空白、５文字以内）
+  if(empty($name)){
     echo 'ニックネーム：入力されていません。';
     echo '<br>';
+  } else if(5 < mb_strlen($name)){
+    echo 'ニックネーム：５文字以内で入力してください';
+    echo '<br>';
   } else{
-    echo 'ニックネーム：';
-    echo $name;
+    echo 'ニックネーム：'.$name;
     echo '<br>';
     echo '<br>';
   }
