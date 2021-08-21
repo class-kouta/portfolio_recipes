@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+session_regenerate_id();
+
+require_once(__DIR__ . '/../../app/config.php');
+use App\Utils;
+use App\Token;
+
+Token::create();
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -38,6 +51,8 @@
         <div class="my-4">
           <input type="submit" class="btn btn-info" value="ログイン">
         </div>
+
+        <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
 
       </form>
 

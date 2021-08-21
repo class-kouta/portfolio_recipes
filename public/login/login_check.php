@@ -1,8 +1,14 @@
 <?php
 
+session_start();
+session_regenerate_id();
+
 require_once(__DIR__ . '/../../app/config.php');  //DB接続
 use App\Database;
 use App\Utils;
+use App\Token;
+
+Token::validate();
 
 $dbh = Database::getInstance();  //DB接続
 
