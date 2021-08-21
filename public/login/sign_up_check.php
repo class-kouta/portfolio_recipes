@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+session_regenerate_id();
+
+require_once(__DIR__ . '/../../app/config.php');
+use App\Utils;
+use App\Token;
+
+Token::validate();
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -7,9 +20,6 @@
   <body>
 
   <?php
-
-  require_once(__DIR__ . '/../../app/config.php');
-  use App\Utils;
 
   // $_POSTを消毒
   $post = Utils::sanitize($_POST);
@@ -82,7 +92,7 @@
     echo'</form>';
     echo'<br>';
     echo'<br>';
-    echo'<a href="sign_up.html">入力画面に戻る</a>';
+    echo'<a href="sign_up.php">入力画面に戻る</a>';
   }
 
   ?>
