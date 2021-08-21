@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php'); 
+require_once(__DIR__ . '/../../../app/session.php');
 
 ?>
 
@@ -13,26 +13,26 @@ require_once(__DIR__ . '/../../../app/session.php');
   </head>
   <body>
   <?php
-  
+
   require_once(__DIR__ . '/../../../app/config.php');  //DB接続
   use App\Database;
-  
+
   try{
-    
+
     ///////// DB からデータ取得 ///////////
-    $dbh = Database::getInstance(); 
+    $dbh = Database::getInstance();
     $sql = 'SELECT code,recipe_name FROM recipes WHERE genre = 1 AND user_id = ?';
     $stmt = $dbh->prepare($sql);
     $data[] = $_SESSION['id'];
     $stmt->execute($data);
     $dbh = null;
-    
-  }catch(PDOExceotion $e){
-    echo'ただいま障害により大変ご迷惑をおかけしております';  
-    echo'<br>';  
-    echo'<br>';  
-    echo'エラー理由：';  
-    echo'<br>';  
+
+  }catch(PDOException $e){
+    echo'ただいま障害により大変ご迷惑をおかけしております';
+    echo'<br>';
+    echo'<br>';
+    echo'エラー理由：';
+    echo'<br>';
     echo $e->getMessage();
     exit();
   }
@@ -66,11 +66,11 @@ require_once(__DIR__ . '/../../../app/session.php');
       <input type="submit" name="delete" value="削除">
 
     </form>
-    
+
 
   <br>
   <a href="../mypage.php">マイページへ</a>
-  
+
 
   </body>
 </html>
