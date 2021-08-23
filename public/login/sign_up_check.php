@@ -21,14 +21,13 @@ Token::validate();
 
   <?php
 
-  // $_POSTを消毒
   $post = Utils::sanitize($_POST);
   $name = $post['name'];
   $mail = $post['mail'];
   $pass = $post['pass'];
   $pass2 = $post['pass2'];
 
-  // ニックネームのチェック
+  // チェック
   if(empty($name)){
     echo 'ニックネーム：入力されていません。';
     echo '<br>';
@@ -43,7 +42,6 @@ Token::validate();
     echo '<br>';
   }
 
-  // メールアドレスのチェック
   if(empty($mail)){
     echo 'メールアドレス：入力されていません。';
     echo '<br>';
@@ -58,7 +56,6 @@ Token::validate();
     echo '<br>';
   }
 
-  // パスワードのチェック
   if($pass ===''){
     echo 'パスワード：入力されていません。<br>';
     echo'<br>';
@@ -68,13 +65,11 @@ Token::validate();
     echo'<br>';
     echo'<br>';
   } else {
-    echo 'パスワード：';
-    echo str_repeat('*', strlen($pass));
+    echo 'パスワード：'.str_repeat('*', strlen($pass));
     echo '<br>';
     echo '<br>';
   }
 
-  // 処理
   if(empty($name) || empty($mail) || !filter_var($mail, FILTER_VALIDATE_EMAIL) || empty($pass) || $pass !== $pass2){
     echo '<form>';
     echo '<input type="button" onclick="history.back()" value="戻る">';

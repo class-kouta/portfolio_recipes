@@ -27,7 +27,6 @@ Token::create();
 
       <form method="post" action="login_check.php">
 
-        <!-- メールアドレス -->
         <div class="mb-3">
           <label for="mail" class="form-label">メールアドレス</label>
           <div class="row">
@@ -37,7 +36,6 @@ Token::create();
           </div>
         </div>
 
-        <!-- パスワード -->
         <div class="mb-3">
           <label for="pass" class="form-label">パスワード</label>
           <div class="row">
@@ -47,7 +45,6 @@ Token::create();
           </div>
         </div>
 
-        <!-- ボタン -->
         <div class="my-4">
           <input type="submit" class="btn btn-info" value="ログイン">
         </div>

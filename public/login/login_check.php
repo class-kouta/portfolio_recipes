@@ -3,14 +3,14 @@
 session_start();
 session_regenerate_id();
 
-require_once(__DIR__ . '/../../app/config.php');  //DB接続
+require_once(__DIR__ . '/../../app/config.php');
 use App\Database;
 use App\Utils;
 use App\Token;
 
 Token::validate();
 
-$dbh = Database::getInstance();  //DB接続
+$dbh = Database::getInstance();
 
 try{
 
@@ -27,20 +27,18 @@ try{
 
   $result = $stmt->fetch();
 
-  /////////////// メールアドレスチェック //////////////
   if(empty($mail)){
     echo 'メールアドレス：入力されていません。';
     echo '<br>';
   }
 
-  /////////////// パスワードチェック/////////////
   if(empty($pass)){
     echo 'パスワード：入力されていません。<br>';
     echo'<br>';
   }
 
-  ////////////// アドレス未記入で送信した際のエラーメッセージを防ぐ //////////////
-  if(!isset($result['password'])){    // これ書かないと変数nullのエラー出る
+  // これ書かないと変数nullのエラー出る
+  if(!isset($result['password'])){
     $pass2 = '';
   }else{
     $pass2 = $result['password'];
@@ -58,12 +56,10 @@ try{
     echo '</form>';
   }else {
 
-    ////////////////////セッション/////////////////
-    session_start();
     $_SESSION['login'] = 1;
     $_SESSION['id'] = $result['id'];
     $_SESSION['name'] = $result['name'];
-    ////////////////////セッション/////////////////
+
     header('Location:../mypage/mypage.php');
     exit();
 
