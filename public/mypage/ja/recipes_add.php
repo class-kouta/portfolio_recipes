@@ -18,6 +18,7 @@ Token::create();
   </head>
   <body>
 
+    <!-- ファイルの切り出し（ここから） -->
     <div class="container-sm mt-2">
       <div class="d-flex flex-row-reverse ">
         <p><?= $_SESSION['name']?> さん ログイン中</p>
@@ -26,15 +27,12 @@ Token::create();
         <a href="../../login/logout.php">ログアウト</a>
       </div>
     </div>
+    <!-- ファイルの切り出し（ここまで） -->
 
     <main class="container-sm mx-2 my-3">
-      <!-- <div class="mb-5">
-        <h1 class="fs-3 text-primary">レシピ追加</h1>
-      </div> -->
 
       <form method="post" action="recipes_add_check.php">
 
-        <!-- レシピ名 -->
         <div class="mb-3">
           <label for="name" class="form-label">レシピ名</label>
           <div class="row">
@@ -44,7 +42,6 @@ Token::create();
           </div>
         </div>
 
-        <!-- レシピ内容 -->
         <div class="mb-3">
           <label for="text" class="form-label">レシピ内容</label>
           <div class="row">
@@ -54,7 +51,6 @@ Token::create();
           </div>
         </div>
 
-        <!-- ボタン -->
         <div class="my-4">
           <input type="submit" class="btn btn-info" value="レシピを追加">
         </div>

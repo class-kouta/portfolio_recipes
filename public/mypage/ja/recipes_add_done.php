@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php'); 
+require_once(__DIR__ . '/../../../app/session.php');
 
 ?>
 
@@ -15,6 +15,7 @@ require_once(__DIR__ . '/../../../app/session.php');
 
   <body>
 
+  <!-- ファイルの切り出し（ここから） -->
   <div class="container-sm mt-2">
     <div class="d-flex flex-row-reverse ">
       <p><?= $_SESSION['name']?> さん ログイン中</p>
@@ -23,34 +24,32 @@ require_once(__DIR__ . '/../../../app/session.php');
       <a href="../../login/logout.php">ログアウト</a>
     </div>
   </div>
-  
+  <!-- ファイルの切り出し（ここまで） -->
+
   <?php
 
-  require_once(__DIR__ . '/../../../app/config.php');  //DB接続
+  require_once(__DIR__ . '/../../../app/config.php');
   use App\Database;
   use App\Utils;
 
-  $dbh = Database::getInstance();  //DB接続
+  $dbh = Database::getInstance();
 
   try{
 
     $post = Utils::sanitize($_POST);
-
     $name = $post['name'];
     $text = $post['text'];
 
-    ///////// DB に指示 ///////////
     $sql = 'INSERT INTO recipes(user_id,recipe_name,recipe_contents,genre) VALUES (?,?,?,1)';
     $stmt = $dbh->prepare($sql);
     $data[] = $_SESSION['id'];
     $data[] = $name;
     $data[] = $text;
     $stmt->execute($data);
-    
-    ////////// DB を切断 ////////////
+
     $dbh = null;
 
-    header('Location:recipes_list.php'); 
+    header('Location:recipes_list.php');
 
   }catch(Exception $e){
     echo $e;

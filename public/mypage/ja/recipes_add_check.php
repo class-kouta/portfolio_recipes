@@ -20,6 +20,7 @@ Token::validate();
 
   <body>
 
+  <!-- ファイルの切り出し（ここから） -->
   <div class="container-sm mt-2">
     <div class="d-flex flex-row-reverse ">
       <p><?= $_SESSION['name']?> さん ログイン中</p>
@@ -28,15 +29,15 @@ Token::validate();
       <a href="../../login/logout.php">ログアウト</a>
     </div>
   </div>
+  <!-- ファイルの切り出し（ここから） -->
 
   <?php
 
   $post = Utils::sanitize($_POST);
-
   $name = $post['name'];
   $text = $post['text'];
 
-  ////////////////レシピ名チェック//////////////
+
   if($name === ''){
     echo 'レシピ名が入力されていません';
     echo '<br>';
@@ -46,7 +47,6 @@ Token::validate();
     echo '<br>';
   }
 
-  /////////////////レシピ内容チェック/////////////////
   if($text ===''){
     echo 'レシピ内容が入力されていません。';
     echo '<br>';

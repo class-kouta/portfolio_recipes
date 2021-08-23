@@ -39,6 +39,7 @@ require_once(__DIR__ . '/../../../app/session.php');
 
   ?>
 
+  <!-- ファイルの切り出し（ここから） -->
   <div class="container-sm mt-2">
     <div class="d-flex flex-row-reverse ">
       <p><?= $_SESSION['name']?> さん ログイン中</p>
@@ -47,6 +48,7 @@ require_once(__DIR__ . '/../../../app/session.php');
       <a href="../../login/logout.php">ログアウト</a>
     </div>
   </div>
+    <!-- ファイルの切り出し（ここまで） -->
 
     <span>和食レシピ一覧</span>
     <br>

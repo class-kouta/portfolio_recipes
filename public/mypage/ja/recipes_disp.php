@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php'); 
+require_once(__DIR__ . '/../../../app/session.php');
 
 ?>
 
@@ -14,6 +14,7 @@ require_once(__DIR__ . '/../../../app/session.php');
   </head>
   <body>
 
+  <!-- ファイルの切り出し（ここから） -->
   <div class="container-sm mt-2">
     <div class="d-flex flex-row-reverse ">
       <p><?= $_SESSION['name']?> さん ログイン中</p>
@@ -22,13 +23,14 @@ require_once(__DIR__ . '/../../../app/session.php');
       <a href="../../login/logout.php">ログアウト</a>
     </div>
   </div>
-  
+  <!-- ファイルの切り出し（ここまで） -->
+
   <?php
-  
-  require_once(__DIR__ . '/../../../app/config.php');  //DB接続
+
+  require_once(__DIR__ . '/../../../app/config.php');
   use App\Database;
 
-  $dbh = Database::getInstance();  //DB接続
+  $dbh = Database::getInstance();
 
   try{
 
@@ -45,13 +47,13 @@ require_once(__DIR__ . '/../../../app/session.php');
 
     $dbh = null;
 
-  }catch(Exeception $e){
+  }catch(Exception $e){
 
     echo'ただいま障害により大変ご迷惑をおかけしております';
     exit();
 
   }
-  
+
   ?>
 
   レシピ名<br>
