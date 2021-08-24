@@ -1,7 +1,5 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php');
-
 if(isset($_POST['disp'])){
   if(!isset($_POST['code'])){
     header('Location:recipes_ng.php');

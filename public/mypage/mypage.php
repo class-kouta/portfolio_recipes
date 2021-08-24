@@ -13,16 +13,7 @@ require_once(__DIR__ . '/../../app/session.php');
   </head>
   <body>
 
-  <!-- ファイルの切り出し（ここから） -->
-  <div class="container-sm mt-2">
-    <div class="d-flex flex-row-reverse ">
-      <p><?= $_SESSION['name']?> さん ログイン中</p>
-    </div>
-    <div class="d-flex flex-row-reverse ">
-      <a href="../login/logout.php">ログアウト</a>
-    </div>
-  </div>
-  <!-- ファイルの切り出し（ここまで） -->
+  <?php require_once(__DIR__ . '/login_user.php'); ?>
 
   <main class="container-sm mx-2 mt-4 row">
     <a class="btn btn-outline-success col-3 py-5 fs-3" role="button" href="ja/recipes_list.php">和食</a>

@@ -18,16 +18,7 @@ Token::create();
   </head>
   <body>
 
-    <!-- ファイルの切り出し（ここから） -->
-    <div class="container-sm mt-2">
-      <div class="d-flex flex-row-reverse ">
-        <p><?= $_SESSION['name']?> さん ログイン中</p>
-      </div>
-      <div class="d-flex flex-row-reverse ">
-        <a href="../../login/logout.php">ログアウト</a>
-      </div>
-    </div>
-    <!-- ファイルの切り出し（ここまで） -->
+  <?php require_once(__DIR__ . '/../login_user.php'); ?>
 
     <main class="container-sm mx-2 my-3">
 
