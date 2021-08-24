@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php'); 
+require_once(__DIR__ . '/../../../app/session.php');
 
 ?>
 
@@ -14,6 +14,7 @@ require_once(__DIR__ . '/../../../app/session.php');
 
   <body>
 
+  <!-- ファイルの切り出し（ここから） -->
   <div class="container-sm mt-2">
     <div class="d-flex flex-row-reverse ">
       <p><?= $_SESSION['name']?> さん ログイン中</p>
@@ -22,14 +23,15 @@ require_once(__DIR__ . '/../../../app/session.php');
       <a href="../../login/logout.php">ログアウト</a>
     </div>
   </div>
-  
+  <!-- ファイルの切り出し（ここまで） -->
+
   <?php
-  
-  require_once(__DIR__ . '/../../../app/config.php'); 
+
+  require_once(__DIR__ . '/../../../app/config.php');
   use App\Database;
   use App\Utils;
 
-  $dbh = Database::getInstance();  //DB接続
+  $dbh = Database::getInstance();
 
   try{
 
@@ -39,15 +41,13 @@ require_once(__DIR__ . '/../../../app/session.php');
     $name = $post['name'];
     $text = $post['text'];
 
-    ///////// DB に指示 ///////////
-    $sql = 'UPDATE recipes SET recipe_name = ? ,recipe_contents = ? WHERE code = ? '; 
+    $sql = 'UPDATE recipes SET recipe_name = ? ,recipe_contents = ? WHERE code = ? ';
     $stmt = $dbh->prepare($sql);
     $data[] = $name;
     $data[] = $text;
     $data[] = $code;
     $stmt->execute($data);
-    
-    ////////// DB を切断 ////////////
+
     $dbh = null;
 
     echo '次のとおり修正しました <br><br>';

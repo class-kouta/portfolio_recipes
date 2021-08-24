@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php'); 
+require_once(__DIR__ . '/../../../app/session.php');
 
 ?>
 
@@ -14,27 +14,24 @@ require_once(__DIR__ . '/../../../app/session.php');
   <body>
   <?php
 
-  require_once(__DIR__ . '/../../../app/config.php');  //DB接続
+  require_once(__DIR__ . '/../../../app/config.php');
   use App\Database;
   use App\Utils;
 
-  $dbh = Database::getInstance();  //DB接続
+  $dbh = Database::getInstance();
 
   try{
-    
+
     $post = Utils::sanitize($_POST);
     $code = $post['code'];
 
-
-    ///////// DB に指示 ///////////
     $sql = 'DELETE FROM recipes WHERE code = ?';
     $stmt = $dbh->prepare($sql);
     $data[] = $code;
     $stmt->execute($data);
-    
-    ////////// DB を切断 ////////////
+
     $dbh = null;
-    
+
   }catch(Exception $e){
     echo $e;
     echo'ただいま障害により大変ご迷惑をお掛けしています。';
@@ -43,6 +40,7 @@ require_once(__DIR__ . '/../../../app/session.php');
 
   ?>
 
+  <!-- ファイルの切り出し（ここから） -->
   <div class="container-sm mt-2">
     <div class="d-flex flex-row-reverse ">
       <p><?= $_SESSION['name']?> さん ログイン中</p>
@@ -51,6 +49,8 @@ require_once(__DIR__ . '/../../../app/session.php');
       <a href="../../login/logout.php">ログアウト</a>
     </div>
   </div>
+  <!-- ファイルの切り出し（ここから） -->
+
   <br>
   削除しました。
   <br>

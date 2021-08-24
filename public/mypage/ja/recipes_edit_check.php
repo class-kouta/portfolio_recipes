@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php'); 
+require_once(__DIR__ . '/../../../app/session.php');
 
 ?>
 
@@ -15,8 +15,8 @@ require_once(__DIR__ . '/../../../app/session.php');
   <body>
 
   <?php
-  
-  require_once(__DIR__ . '/../../../app/config.php'); 
+
+  require_once(__DIR__ . '/../../../app/config.php');
   use App\Database;
   use App\Utils;
 
@@ -28,6 +28,7 @@ require_once(__DIR__ . '/../../../app/session.php');
 
   ?>
 
+  <!-- ファイルの切り出し（ここから） -->
   <div class="container-sm mt-2">
     <div class="d-flex flex-row-reverse ">
       <p><?= $_SESSION['name']?> さん ログイン中</p>
@@ -36,9 +37,10 @@ require_once(__DIR__ . '/../../../app/session.php');
       <a href="../../login/logout.php">ログアウト</a>
     </div>
   </div>
+  <!-- ファイルの切り出し（ここまで） -->
 
   <?php
-  
+
   if($name === ''){
     echo 'レシピ名が入力されていません';
   } else{
