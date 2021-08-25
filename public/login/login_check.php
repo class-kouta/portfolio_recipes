@@ -27,42 +27,11 @@ try{
 
   $result = $stmt->fetch();
 
-  if(empty($mail)){
-    echo 'メールアドレス：入力されていません。';
-    echo '<br>';
-  }
-
-  if(empty($pass)){
-    echo 'パスワード：入力されていません。<br>';
-    echo'<br>';
-  }
-
-  // これ書かないと変数nullのエラー出る
+  // 書かないと変数nullのエラー出る
   if(!isset($result['password'])){
     $pass2 = '';
   }else{
     $pass2 = $result['password'];
-  }
-
-  if(password_verify($pass,$pass2) === false){
-    echo 'メールアドレス または パスワード が間違っています';
-    echo'<br>';
-    echo'<br>';
-  }
-
-  if($mail === '' || $pass === '' || password_verify($pass,$pass2) === false){
-    echo '<form>';
-    echo '<input type="button" onclick="history.back()" value="戻る">';
-    echo '</form>';
-  }else {
-
-    $_SESSION['login'] = 1;
-    $_SESSION['id'] = $result['id'];
-    $_SESSION['name'] = $result['name'];
-
-    header('Location:../mypage/mypage.php');
-    exit();
-
   }
 
 }catch(Exception $e){
@@ -76,3 +45,52 @@ try{
   exit();
 
 }
+
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>漢のレシピ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  </head>
+  <body>
+
+  <?php if(empty($mail)){ ?>
+    <span>メールアドレス：入力されていません。</span>
+    <br>
+    <br>
+  <?php } ?>
+
+  <?php if(empty($pass)){ ?>
+    <span>パスワード：入力されていません。</span>
+    <br>
+    <br>
+  <?php } ?>
+
+  <?php if(password_verify($pass,$pass2) === false){ ?>
+    <span>メールアドレス または パスワード が間違っています。</span>
+    <br>
+    <br>
+  <?php } ?>
+
+  <?php if($mail === '' || $pass === '' || password_verify($pass,$pass2) === false){ ?>
+    <form>
+      <input type="button" onclick="history.back()" value="戻る">
+    </form>
+  <?php
+
+  }else {
+    $_SESSION['login'] = 1;
+    $_SESSION['id'] = $result['id'];
+    $_SESSION['name'] = $result['name'];
+
+    header('Location:../mypage/mypage.php');
+    exit();
+  }
+
+  ?>
+
+</body>
+</html>
