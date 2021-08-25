@@ -7,7 +7,7 @@ require_once(__DIR__ . '/../../app/config.php');
 use App\Utils;
 use App\Token;
 
-Token::validate();
+Token::create();
 
 $post = Utils::sanitize($_POST);
 $name = $post['name'];
@@ -81,6 +81,7 @@ $pass2 = $post['pass2'];
       <input type="hidden" name="name" value="<?= $name ?>">
       <input type="hidden" name="mail" value="<?= $mail ?>">
       <input type="hidden" name="pass" value="<?= $pass ?>">
+      <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
       <input type="submit" value="新規登録">
     </form>
 

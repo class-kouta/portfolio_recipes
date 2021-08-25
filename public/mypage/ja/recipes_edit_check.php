@@ -3,8 +3,10 @@
 require_once(__DIR__ . '/../../../app/session.php');
 
 require_once(__DIR__ . '/../../../app/config.php');
-use App\Database;
 use App\Utils;
+use App\Token;
+
+Token::create();
 
 $post = Utils::sanitize($_POST);
 
@@ -59,6 +61,7 @@ $text = $post['text'];
       <input type="hidden" name="code" value="<?= $code ?>">
       <input type="hidden" name="name" value="<?= $name ?>">
       <input type="hidden" name="text" value="<?= $text ?>">
+      <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
       <br>
       <input type="button" onclick="history.back()" value="戻る">
       <input type="submit" value="OK">

@@ -1,11 +1,6 @@
 <?php
 
 require_once(__DIR__ . '/../../../app/session.php');
-require_once(__DIR__ . '/../../../app/config.php');
-use App\Utils;
-use App\Token;
-
-Token::create();
 
 ?>
 
@@ -45,8 +40,6 @@ Token::create();
         <div class="my-4">
           <input type="submit" class="btn btn-info" value="レシピを追加">
         </div>
-
-        <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
 
       </form>
 

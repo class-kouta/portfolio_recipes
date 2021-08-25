@@ -1,9 +1,12 @@
 <?php
 
 require_once(__DIR__ . '/../../../app/session.php');
-
 require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
+use App\Utils;
+use App\Token;
+
+Token::create();
 
 try{
 
@@ -49,6 +52,7 @@ try{
   <br>
   <form method="post" action="recipes_delete_done.php">
     <input type="hidden" name="code" value="<?= $code ?>">
+    <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
     <input type="button" onclick="history.back()" value="戻る">
     <input type="submit" value="OK">
   </form>

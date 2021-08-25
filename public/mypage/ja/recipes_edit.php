@@ -4,7 +4,6 @@ require_once(__DIR__ . '/../../../app/session.php');
 
 require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
-use App\Utils;
 
 $dbh = Database::getInstance();
 
