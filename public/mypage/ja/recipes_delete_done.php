@@ -2,6 +2,30 @@
 
 require_once(__DIR__ . '/../../../app/session.php');
 
+require_once(__DIR__ . '/../../../app/config.php');
+use App\Database;
+use App\Utils;
+
+$dbh = Database::getInstance();
+
+try{
+
+  $post = Utils::sanitize($_POST);
+  $code = $post['code'];
+
+  $sql = 'DELETE FROM recipes WHERE code = ?';
+  $stmt = $dbh->prepare($sql);
+  $data[] = $code;
+  $stmt->execute($data);
+
+  $dbh = null;
+
+}catch(Exception $e){
+  echo $e;
+  echo'ただいま障害により大変ご迷惑をお掛けしています。';
+  exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -12,42 +36,14 @@ require_once(__DIR__ . '/../../../app/session.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   </head>
   <body>
-  <?php
-
-  require_once(__DIR__ . '/../../../app/config.php');
-  use App\Database;
-  use App\Utils;
-
-  $dbh = Database::getInstance();
-
-  try{
-
-    $post = Utils::sanitize($_POST);
-    $code = $post['code'];
-
-    $sql = 'DELETE FROM recipes WHERE code = ?';
-    $stmt = $dbh->prepare($sql);
-    $data[] = $code;
-    $stmt->execute($data);
-
-    $dbh = null;
-
-  }catch(Exception $e){
-    echo $e;
-    echo'ただいま障害により大変ご迷惑をお掛けしています。';
-    exit();
-  }
-
-  ?>
 
   <?php require_once(__DIR__ . '/../login_user.php'); ?>
 
-  <br>
-  削除しました。
+  <span>削除しました。</span>
   <br>
   <br>
 
-    <a href="recipes_list.php">レシピ一覧へ</a>
+  <a href="recipes_list.php">レシピ一覧へ</a>
 
   </body>
 </html>

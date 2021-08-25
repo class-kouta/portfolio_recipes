@@ -2,6 +2,33 @@
 
 require_once(__DIR__ . '/../../../app/session.php');
 
+require_once(__DIR__ . '/../../../app/config.php');
+use App\Database;
+
+$dbh = Database::getInstance();
+
+try{
+
+  $code = $_GET['code'];
+
+  $sql = 'SELECT recipe_name,recipe_contents FROM recipes WHERE code = ?';
+  $stmt = $dbh->prepare($sql);
+  $data[] = $code;
+  $stmt->execute($data);
+
+  $rec = $stmt->fetch();
+  $name = $rec['recipe_name'];
+  $text = $rec['recipe_contents'];
+
+  $dbh = null;
+
+}catch(Exception $e){
+
+  echo'ただいま障害により大変ご迷惑をおかけしております';
+  exit();
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -16,43 +43,14 @@ require_once(__DIR__ . '/../../../app/session.php');
 
   <?php require_once(__DIR__ . '/../login_user.php'); ?>
 
-  <?php
-
-  require_once(__DIR__ . '/../../../app/config.php');
-  use App\Database;
-
-  $dbh = Database::getInstance();
-
-  try{
-
-    $code = $_GET['code'];
-
-    $sql = 'SELECT recipe_name,recipe_contents FROM recipes WHERE code = ?';
-    $stmt = $dbh->prepare($sql);
-    $data[] = $code;
-    $stmt->execute($data);
-
-    $rec = $stmt->fetch();
-    $name = $rec['recipe_name'];
-    $text = $rec['recipe_contents'];
-
-    $dbh = null;
-
-  }catch(Exception $e){
-
-    echo'ただいま障害により大変ご迷惑をおかけしております';
-    exit();
-
-  }
-
-  ?>
-
-  レシピ名<br>
-  <?= $name;?>
+  <span>レシピ名：<?= $name ?></span>
   <br>
   <br>
-  レシピ内容<br>
-  <?= nl2br($text);?>
+
+  <span>レシピ内容</span>
+  <br>
+  <br>
+  <span><?= nl2br($text);?></span>
   <br>
   <br>
 

@@ -7,6 +7,10 @@ use App\Token;
 
 Token::validate();
 
+$post = Utils::sanitize($_POST);
+$name = $post['name'];
+$text = $post['text'];
+
 ?>
 
 <!DOCTYPE html>
@@ -22,47 +26,36 @@ Token::validate();
 
   <?php require_once(__DIR__ . '/../login_user.php'); ?>
 
-  <?php
+  <?php if($name === ''){ ?>
+    <span>レシピ名が入力されていません</span>
+    <br>
+  <?php }else{ ?>
+    <span>レシピ名：<?= $name ?></span>
+    <br>
+  <?php } ?>
 
-  $post = Utils::sanitize($_POST);
-  $name = $post['name'];
-  $text = $post['text'];
+  <?php if($text ===''){ ?>
+    <span>レシピ内容が入力されていません</span>
+    <br>
+  <?php }else{ ?>
+    <span>レシピ内容：</span>
+    <br>
+    <span><?= nl2br($text); ?></span>
+    <br>
+  <?php } ?>
 
-
-  if($name === ''){
-    echo 'レシピ名が入力されていません';
-    echo '<br>';
-  }else{
-    echo 'レシピ名：';
-    echo $name;
-    echo '<br>';
-  }
-
-  if($text ===''){
-    echo 'レシピ内容が入力されていません。';
-    echo '<br>';
-  }else{
-    echo 'レシピ内容：';
-    echo '<br>';
-    echo nl2br($text);
-    echo '<br>';
-  }
-
-  if($name === '' || $text === ''){
-    echo '<form>';
-    echo '<input type="button" onclick="history.back()" value="戻る">';
-    echo '</form>';
-  }else{
-    echo'<form method="post" action="recipes_add_done.php">';
-    echo'<input type="hidden" name="name" value="'.$name.'">';
-    echo'<input type="hidden" name="text" value="'.$text.'">';
-    echo'<br>';
-    echo'<input type="button" onclick="history.back()" value="戻る">';
-    echo'<input type="submit" value="OK">';
-    echo'</form>';
-  }
-
-  ?>
+  <?php if($name === '' || $text === ''){ ?>
+    <form>
+      <input type="button" onclick="history.back()" value="戻る">
+    </form>
+  <?php }else{ ?>
+    <form method="post" action="recipes_add_done.php">
+      <input type="hidden" name="name" value="<?= $name ?>">
+      <input type="hidden" name="text" value="<?= $text ?>">
+      <input type="button" onclick="history.back()" value="戻る">
+      <input type="submit" value="OK">
+    </form>
+  <?php } ?>
 
   </body>
 </html>

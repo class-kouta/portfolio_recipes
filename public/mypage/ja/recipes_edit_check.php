@@ -2,6 +2,16 @@
 
 require_once(__DIR__ . '/../../../app/session.php');
 
+require_once(__DIR__ . '/../../../app/config.php');
+use App\Database;
+use App\Utils;
+
+$post = Utils::sanitize($_POST);
+
+$code = $post['code'];
+$name= $post['name'];
+$text = $post['text'];
+
 ?>
 
 <!DOCTYPE html>
@@ -14,61 +24,46 @@ require_once(__DIR__ . '/../../../app/session.php');
 
   <body>
 
-  <?php
-
-  require_once(__DIR__ . '/../../../app/config.php');
-  use App\Database;
-  use App\Utils;
-
-  $post = Utils::sanitize($_POST);
-
-  $code = $post['code'];
-  $name= $post['name'];
-  $text = $post['text'];
-
-  ?>
-
   <?php require_once(__DIR__ . '/../login_user.php'); ?>
 
-  <?php
+  <?php if($name === ''){ ?>
+    <span>レシピ名が入力されていません</span>
+    <br>
+    <br>
+  <?php } else{ ?>
+    <span>レシピ名：<?= $name ?></span>
+    <br>
+    <br>
+  <?php } ?>
 
-  if($name === ''){
-    echo 'レシピ名が入力されていません';
-  } else{
-    echo 'レシピ名：';
-    echo $name;
-    echo '<br>';
-    echo '<br>';
-  }
+  <?php if($text === ''){ ?>
+    <span>レシピ内容が入力されていません</span>
+    <br>
+    <br>
+  <?php } else{ ?>
+    <span>レシピ内容</span>
+    <br>
+    <span><?= nl2br($text) ?></span>
+    <br>
+    <br>
+  <?php } ?>
 
-  if($text === ''){
-    echo 'レシピ内容が入力されていません';
-  } else{
-    echo 'レシピ内容：';
-    echo '<br>';
-    echo $text;
-    echo '<br>';
-    echo '<br>';
-  }
-
-  if($name === '' || $text === ''){
-    echo '<form>';
-    echo '<input type="button" onclick="history.back()" value="戻る">';
-    echo '</form>';
-  }else{
-    echo'上記のとおり変更します。';
-    echo'<br>';
-    echo'<form method="post" action="recipes_edit_done.php">';
-    echo'<input type="hidden" name="code" value="'.$code.'">';
-    echo'<input type="hidden" name="name" value="'.$name.'">';
-    echo'<input type="hidden" name="text" value="'.$text.'">';
-    echo'<br>';
-    echo'<input type="button" onclick="history.back()" value="戻る">';
-    echo'<input type="submit" value="OK">';
-    echo'</form>';
-  }
-
-  ?>
+  <?php if($name === '' || $text === ''){ ?>
+    <form>
+      <input type="button" onclick="history.back()" value="戻る">
+    </form>
+  <?php }else{ ?>
+    <span> 上記のとおり変更します。</span>
+    <br>
+    <form method="post" action="recipes_edit_done.php">
+      <input type="hidden" name="code" value="<?= $code ?>">
+      <input type="hidden" name="name" value="<?= $name ?>">
+      <input type="hidden" name="text" value="<?= $text ?>">
+      <br>
+      <input type="button" onclick="history.back()" value="戻る">
+      <input type="submit" value="OK">
+    </form>
+  <?php } ?>
 
   </body>
 </html>

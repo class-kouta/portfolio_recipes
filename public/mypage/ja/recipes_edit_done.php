@@ -2,6 +2,36 @@
 
 require_once(__DIR__ . '/../../../app/session.php');
 
+require_once(__DIR__ . '/../../../app/config.php');
+use App\Database;
+use App\Utils;
+
+$dbh = Database::getInstance();
+
+try{
+
+  $post = Utils::sanitize($_POST);
+
+  $code = $post['code'];
+  $name = $post['name'];
+  $text = $post['text'];
+
+  $sql = 'UPDATE recipes SET recipe_name = ? ,recipe_contents = ? WHERE code = ? ';
+  $stmt = $dbh->prepare($sql);
+  $data[] = $name;
+  $data[] = $text;
+  $data[] = $code;
+  $stmt->execute($data);
+
+  $dbh = null;
+
+
+}catch(Exception $e){
+  echo $e;
+  echo'ただいま障害により大変ご迷惑をお掛けしています。';
+  exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -16,44 +46,16 @@ require_once(__DIR__ . '/../../../app/session.php');
 
   <?php require_once(__DIR__ . '/../login_user.php'); ?>
 
-  <?php
-
-  require_once(__DIR__ . '/../../../app/config.php');
-  use App\Database;
-  use App\Utils;
-
-  $dbh = Database::getInstance();
-
-  try{
-
-    $post = Utils::sanitize($_POST);
-
-    $code = $post['code'];
-    $name = $post['name'];
-    $text = $post['text'];
-
-    $sql = 'UPDATE recipes SET recipe_name = ? ,recipe_contents = ? WHERE code = ? ';
-    $stmt = $dbh->prepare($sql);
-    $data[] = $name;
-    $data[] = $text;
-    $data[] = $code;
-    $stmt->execute($data);
-
-    $dbh = null;
-
-    echo '次のとおり修正しました <br><br>';
-    echo 'レシピ名：'.$name.'<br>';
-    echo 'レシピ内容：'.$text.'円<br>';
-
-  }catch(Exception $e){
-    echo $e;
-    echo'ただいま障害により大変ご迷惑をお掛けしています。';
-    exit();
-  }
-
-  ?>
-
-    <a href="recipes_list.php">レシピ一覧へ</a>
+  <span> 次のとおり修正しました</span>
+  <br>
+  <br>
+  <span>レシピ名：<?= $name ?></span>
+  <br>
+  <br>
+  <span>レシピ内容<?= nl2br($text) ?></span>
+  <br>
+  <br>
+  <a href="recipes_list.php">レシピ一覧へ</a>
 
   </body>
 </html>
