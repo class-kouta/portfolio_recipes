@@ -5,6 +5,7 @@ require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
 use App\Utils;
 use App\Token;
+use App\Recipe;
 
 Token::validate();
 
@@ -15,10 +16,8 @@ try{
   $post = Utils::sanitize($_POST);
   $code = $post['code'];
 
-  $sql = 'DELETE FROM recipes WHERE code = ?';
-  $stmt = $dbh->prepare($sql);
-  $data[] = $code;
-  $stmt->execute($data);
+  $recipe = new Recipe($dbh);
+  $recipe->destroy($code);
 
   $dbh = null;
 

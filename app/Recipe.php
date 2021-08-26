@@ -22,19 +22,32 @@ class Recipe
     $stmt->execute($data);
   }
 
-  public function show()
+  public function show($code)
   {
-
+    $sql = 'SELECT recipe_name,recipe_contents FROM recipes WHERE code = ?';
+    $stmt = $this->dbh->prepare($sql);
+    $data[] = $code;
+    $stmt->execute($data);
+    $rec = $stmt->fetch();
+    return $rec;
   }
 
-  public function update()
+  public function update($name,$text,$code)
   {
-
+    $sql = 'UPDATE recipes SET recipe_name = ? ,recipe_contents = ? WHERE code = ? ';
+    $stmt = $this->dbh->prepare($sql);
+    $data[] = $name;
+    $data[] = $text;
+    $data[] = $code;
+    $stmt->execute($data);
   }
 
-  public function destroy()
+  public function destroy($code)
   {
-
+    $sql = 'DELETE FROM recipes WHERE code = ?';
+    $stmt = $this->dbh->prepare($sql);
+    $data[] = $code;
+    $stmt->execute($data);
   }
 
 

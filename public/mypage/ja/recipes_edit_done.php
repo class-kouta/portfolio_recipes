@@ -6,6 +6,7 @@ require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
 use App\Utils;
 use App\Token;
+use App\Recipe;
 
 Token::validate();
 
@@ -19,12 +20,8 @@ try{
   $name = $post['name'];
   $text = $post['text'];
 
-  $sql = 'UPDATE recipes SET recipe_name = ? ,recipe_contents = ? WHERE code = ? ';
-  $stmt = $dbh->prepare($sql);
-  $data[] = $name;
-  $data[] = $text;
-  $data[] = $code;
-  $stmt->execute($data);
+  $recipe = new Recipe($dbh);
+  $recipe->update($name,$text,$code);
 
   $dbh = null;
 
@@ -55,7 +52,9 @@ try{
   <span>レシピ名：<?= $name ?></span>
   <br>
   <br>
-  <span>レシピ内容<?= nl2br($text) ?></span>
+  <span>レシピ内容</span>
+  <br>
+  <span><?= nl2br($text) ?></span>
   <br>
   <br>
   <a href="recipes_list.php">レシピ一覧へ</a>
