@@ -6,13 +6,12 @@ require_once(__DIR__ . '/../../../app/config.php');
 use App\Utils;
 use App\Token;
 
-Token::create();
-
 $post = Utils::sanitize($_POST);
-
 $code = $post['code'];
 $name= $post['name'];
 $text = $post['text'];
+
+Token::create();
 
 ?>
 

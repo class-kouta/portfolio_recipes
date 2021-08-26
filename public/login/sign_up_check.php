@@ -7,13 +7,13 @@ require_once(__DIR__ . '/../../app/config.php');
 use App\Utils;
 use App\Token;
 
-Token::create();
-
 $post = Utils::sanitize($_POST);
 $name = $post['name'];
 $mail = $post['mail'];
 $pass = $post['pass'];
 $pass2 = $post['pass2'];
+
+Token::create();
 
 ?>
 

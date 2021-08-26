@@ -12,14 +12,13 @@ Token::create();
 $code = $_GET['code'];
 
 $dbh = Database::getInstance();
-
 $recipe = new Recipe($dbh);
 $rec = $recipe->show($code);
 
+$dbh = null;
+
 $name = $rec['recipe_name'];
 $text = $rec['recipe_contents'];
-
-$dbh = null;
 
 ?>
 

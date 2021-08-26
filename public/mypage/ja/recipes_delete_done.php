@@ -9,11 +9,10 @@ use App\Recipe;
 
 Token::validate();
 
-$dbh = Database::getInstance();
-
 $post = Utils::sanitize($_POST);
 $code = $post['code'];
 
+$dbh = Database::getInstance();
 $recipe = new Recipe($dbh);
 $recipe->destroy($code);
 

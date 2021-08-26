@@ -10,14 +10,12 @@ use App\Recipe;
 
 Token::validate();
 
-$dbh = Database::getInstance();
-
 $post = Utils::sanitize($_POST);
-
 $code = $post['code'];
 $name = $post['name'];
 $text = $post['text'];
 
+$dbh = Database::getInstance();
 $recipe = new Recipe($dbh);
 $recipe->update($name,$text,$code);
 

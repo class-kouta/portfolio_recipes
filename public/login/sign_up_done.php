@@ -9,15 +9,14 @@ use App\Utils;
 use App\Token;
 use App\Member;
 
-Token::validate();
-
-$dbh = Database::getInstance();
-
 $post = Utils::sanitize($_POST);
 $name = $post['name'];
 $mail = $post['mail'];
 $pass = $post['pass'];
 
+Token::validate();
+
+$dbh = Database::getInstance();
 $member = new Member($dbh);
 $member->create($name,$mail,$pass);
 

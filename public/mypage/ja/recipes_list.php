@@ -5,15 +5,14 @@ require_once(__DIR__ . '/../../../app/session.php');
 require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
 
-try{
+$dbh = Database::getInstance();
 
-  $dbh = Database::getInstance();
+try{
 
   $sql = 'SELECT code,recipe_name FROM recipes WHERE genre = 1 AND user_id = ?';
   $stmt = $dbh->prepare($sql);
   $data[] = $_SESSION['id'];
   $stmt->execute($data);
-  $dbh = null;
 
 }catch(PDOException $e){
   echo'ただいま障害により大変ご迷惑をおかけしております';
@@ -24,6 +23,8 @@ try{
   echo $e->getMessage();
   exit();
 }
+
+$dbh = null;
 
 ?>
 
