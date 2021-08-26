@@ -5,23 +5,20 @@ require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
 use App\Utils;
 use App\Token;
+use App\Recipe;
 
 Token::validate();
 
 $dbh = Database::getInstance();
 
+$post = Utils::sanitize($_POST);
+$name = $post['name'];
+$text = $post['text'];
+
 try{
 
-  $post = Utils::sanitize($_POST);
-  $name = $post['name'];
-  $text = $post['text'];
-
-  $sql = 'INSERT INTO recipes(user_id,recipe_name,recipe_contents,genre) VALUES (?,?,?,1)';
-  $stmt = $dbh->prepare($sql);
-  $data[] = $_SESSION['id'];
-  $data[] = $name;
-  $data[] = $text;
-  $stmt->execute($data);
+  $recipe = new Recipe($dbh);
+  $recipe->create($name,$text);
 
   $dbh = null;
 

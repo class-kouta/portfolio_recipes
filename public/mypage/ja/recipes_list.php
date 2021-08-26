@@ -8,6 +8,7 @@ use App\Database;
 try{
 
   $dbh = Database::getInstance();
+
   $sql = 'SELECT code,recipe_name FROM recipes WHERE genre = 1 AND user_id = ?';
   $stmt = $dbh->prepare($sql);
   $data[] = $_SESSION['id'];
