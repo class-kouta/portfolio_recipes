@@ -53,7 +53,7 @@ Token::create();
 
       </form>
 
-      <a href="sign_up.php">新規登録はこちら</a>
+      <a href="sign_up.html">新規登録はこちら</a>
 
     </main>
 

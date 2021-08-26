@@ -87,7 +87,7 @@ $pass2 = $post['pass2'];
 
     <br>
     <br>
-    <a href="sign_up.php">入力画面に戻る</a>
+    <a href="sign_up.html">入力画面に戻る</a>
 
   <?php } ?>
 
