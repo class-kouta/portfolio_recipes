@@ -7,9 +7,9 @@ use App\Recipe;
 
 $dbh = Database::getInstance();
 
-try{
+$code = $_GET['code'];
 
-  $code = $_GET['code'];
+try{
 
   $recipe = new Recipe($dbh);
   $rec = $recipe->show($code);
