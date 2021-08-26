@@ -12,25 +12,16 @@ Token::validate();
 
 $dbh = Database::getInstance();
 
-try{
+$post = Utils::sanitize($_POST);
 
-  $post = Utils::sanitize($_POST);
+$code = $post['code'];
+$name = $post['name'];
+$text = $post['text'];
 
-  $code = $post['code'];
-  $name = $post['name'];
-  $text = $post['text'];
+$recipe = new Recipe($dbh);
+$recipe->update($name,$text,$code);
 
-  $recipe = new Recipe($dbh);
-  $recipe->update($name,$text,$code);
-
-  $dbh = null;
-
-
-}catch(Exception $e){
-  echo $e;
-  echo'ただいま障害により大変ご迷惑をお掛けしています。';
-  exit();
-}
+$dbh = null;
 
 ?>
 

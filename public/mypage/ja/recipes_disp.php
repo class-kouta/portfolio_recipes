@@ -9,22 +9,13 @@ $dbh = Database::getInstance();
 
 $code = $_GET['code'];
 
-try{
+$recipe = new Recipe($dbh);
+$rec = $recipe->show($code);
 
-  $recipe = new Recipe($dbh);
-  $rec = $recipe->show($code);
+$name = $rec['recipe_name'];
+$text = $rec['recipe_contents'];
 
-  $name = $rec['recipe_name'];
-  $text = $rec['recipe_contents'];
-
-  $dbh = null;
-
-}catch(Exception $e){
-
-  echo'ただいま障害により大変ご迷惑をおかけしております';
-  exit();
-
-}
+$dbh = null;
 
 ?>
 

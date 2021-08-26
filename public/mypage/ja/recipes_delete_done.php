@@ -11,20 +11,12 @@ Token::validate();
 
 $dbh = Database::getInstance();
 
-try{
+$post = Utils::sanitize($_POST);
+$code = $post['code'];
 
-  $post = Utils::sanitize($_POST);
-  $code = $post['code'];
+$recipe = new Recipe($dbh);
+$recipe->destroy($code);
 
-  $recipe = new Recipe($dbh);
-  $recipe->destroy($code);
+$dbh = null;
 
-  $dbh = null;
-
-  header('Location:recipes_list.php');
-
-}catch(Exception $e){
-  echo $e;
-  echo'ただいま障害により大変ご迷惑をお掛けしています。';
-  exit();
-}
+header('Location:recipes_list.php');
