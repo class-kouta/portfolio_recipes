@@ -50,8 +50,6 @@ class Recipe
     $stmt->execute($data);
   }
 
-
-
 }
 
 ?>

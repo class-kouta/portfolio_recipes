@@ -7,6 +7,7 @@ require_once(__DIR__ . '/../../app/config.php');
 use App\Database;
 use App\Utils;
 use App\Token;
+use App\Member;
 
 Token::validate();
 
@@ -19,12 +20,8 @@ try{
   $mail = $post['mail'];
   $pass = $post['pass'];
 
-  $sql = 'INSERT INTO members(name,mail,password) VALUES (?,?,?)';
-  $stmt = $dbh->prepare($sql);
-  $data[] = $name;
-  $data[] = $mail;
-  $data[] = $pass;
-  $stmt->execute($data);
+  $member = new Member($dbh);
+  $member->create($name,$mail,$pass);
 
   $dbh = null;
 
