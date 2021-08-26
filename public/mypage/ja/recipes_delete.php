@@ -5,31 +5,21 @@ require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
 use App\Utils;
 use App\Token;
+use App\Recipe;
 
 Token::create();
 
-try{
+$code = $_GET['code'];
 
-  $code = $_GET['code'];
+$dbh = Database::getInstance();
 
-  $dbh = Database::getInstance();
+$recipe = new Recipe($dbh);
+$rec = $recipe->show($code);
 
-  $sql = 'SELECT recipe_name FROM recipes WHERE code = ?';
-  $stmt = $dbh->prepare($sql);
-  $data[] = $code;
-  $stmt->execute($data);
+$name = $rec['recipe_name'];
+$text = $rec['recipe_contents'];
 
-  $rec = $stmt->fetch();
-  $name = $rec['recipe_name'];
-
-  $dbh = null;
-
-}catch(Exception $e){
-
-  echo'ただいま障害により大変ご迷惑をおかけしております';
-  exit();
-
-}
+$dbh = null;
 
 ?>
 
@@ -45,6 +35,13 @@ try{
   <?php require_once(__DIR__ . '/../login_user.php'); ?>
 
   <span>レシピ名：<?= $name; ?></span>
+  <br>
+  <br>
+  <span>レシピ内容</span>
+  <br>
+  <br>
+  <span><?= nl2br($text);?></span>
+  <br>
   <br>
   <br>
   <span>このレシピを削除してもよろしいですか</span>

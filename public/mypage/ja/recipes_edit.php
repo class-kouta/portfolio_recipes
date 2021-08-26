@@ -4,30 +4,19 @@ require_once(__DIR__ . '/../../../app/session.php');
 
 require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
+use App\Recipe;
 
 $dbh = Database::getInstance();
 
-try{
+$code = $_GET['code'];
 
-  $code = $_GET['code'];
+$recipe = new Recipe($dbh);
+$rec = $recipe->show($code);
 
-  $sql = 'SELECT recipe_name,recipe_contents FROM recipes WHERE code = ?';
-  $stmt = $dbh->prepare($sql);
-  $data[] = $code;
-  $stmt->execute($data);
+$name = $rec['recipe_name'];
+$text = $rec['recipe_contents'];
 
-  $rec = $stmt->fetch();
-  $name = $rec['recipe_name'];
-  $text = $rec['recipe_contents'];
-
-  $dbh = null;
-
-}catch(Exception $e){
-
-  echo'ただいま障害により大変ご迷惑をおかけしております';
-  exit();
-
-}
+$dbh = null;
 
 ?>
 

@@ -13,27 +13,15 @@ Token::validate();
 
 $dbh = Database::getInstance();
 
-try{
+$post = Utils::sanitize($_POST);
+$name = $post['name'];
+$mail = $post['mail'];
+$pass = $post['pass'];
 
-  $post = Utils::sanitize($_POST);
-  $name = $post['name'];
-  $mail = $post['mail'];
-  $pass = $post['pass'];
+$member = new Member($dbh);
+$member->create($name,$mail,$pass);
 
-  $member = new Member($dbh);
-  $member->create($name,$mail,$pass);
-
-  $dbh = null;
-
-}catch(Exception $e){
-  echo'ただいま障害により大変ご迷惑をおかけしております';
-  echo'<br>';
-  echo'<br>';
-  echo'エラー理由：';
-  echo'<br>';
-  echo $e->getMessage();
-  exit();
-}
+$dbh = null;
 
 ?>
 

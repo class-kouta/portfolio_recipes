@@ -7,43 +7,25 @@ require_once(__DIR__ . '/../../app/config.php');
 use App\Database;
 use App\Utils;
 use App\Token;
+use App\Member;
 
 Token::validate();
 
+$post = Utils::sanitize($_POST);
+$mail = $post['mail'];
+$pass = $post['pass'];
+
 $dbh = Database::getInstance();
+$member = new Member($dbh);
+$result = $member->select_id_name_pass($mail);
 
-try{
+$dbh = null;
 
-  $post = Utils::sanitize($_POST);
-  $mail = $post['mail'];
-  $pass = $post['pass'];
-
-  $sql = 'SELECT id,name,password FROM members WHERE mail = ?' ;
-  $stmt = $dbh->prepare($sql);
-  $data[] = $mail;
-  $stmt->execute($data);
-
-  $dbh = null;
-
-  $result = $stmt->fetch();
-
-  // 書かないと変数nullのエラー出る
-  if(!isset($result['password'])){
-    $pass2 = '';
-  }else{
-    $pass2 = $result['password'];
-  }
-
-}catch(Exception $e){
-
-  echo'ただいま障害により大変ご迷惑をおかけしております';
-  echo'<br>';
-  echo'<br>';
-  echo'エラー理由：';
-  echo'<br>';
-  echo $e->getMessage();
-  exit();
-
+// 書かないと変数nullのエラー出る
+if(!isset($result['password'])){
+  $pass2 = '';
+}else{
+  $pass2 = $result['password'];
 }
 
 ?>
