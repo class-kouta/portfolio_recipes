@@ -48,6 +48,25 @@ class Recipe
     }
   }
 
+  public function showAll($genre,$id)
+  {
+    try{
+
+      $sql = 'SELECT code,recipe_name FROM recipes WHERE genre = ? AND user_id = ?';
+      $stmt = $this->dbh->prepare($sql);
+      $data[] = $genre;
+      $data[] = $id;
+      $stmt->execute($data);
+      $rec = $stmt->fetchAll();
+      return $rec;
+
+    }catch(\PDOException $e){
+      echo'ただいま障害により大変ご迷惑をお掛けしています。';
+      echo $e->getMessage();
+      exit;
+    }
+  }
+
   public function update($name,$text,$code)
   {
     try{

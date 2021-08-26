@@ -4,25 +4,14 @@ require_once(__DIR__ . '/../../../app/session.php');
 
 require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
+use App\Recipe;
+
+$genre = 1;
+$id = $_SESSION['id'];
 
 $dbh = Database::getInstance();
-
-try{
-
-  $sql = 'SELECT code,recipe_name FROM recipes WHERE genre = 1 AND user_id = ?';
-  $stmt = $dbh->prepare($sql);
-  $data[] = $_SESSION['id'];
-  $stmt->execute($data);
-
-}catch(PDOException $e){
-  echo'ただいま障害により大変ご迷惑をおかけしております';
-  echo'<br>';
-  echo'<br>';
-  echo'エラー理由：';
-  echo'<br>';
-  echo $e->getMessage();
-  exit();
-}
+$recipe = new Recipe($dbh);
+$recipes = $recipe->showAll($genre,$id);
 
 $dbh = null;
 
@@ -45,12 +34,13 @@ $dbh = null;
 
   <form method="post" action="branch.php">
 
-  <?php while($rec = $stmt->fetch()){ ?>
-    <input type="radio" name="code" value="<?= $rec['code']; ?>">
-    <?= $rec['recipe_name']; ?>
+  <?php foreach($recipes as $recipe): ?>
+    <input type="radio" name="code" value="<?= $recipe['code']; ?>">
+    <?= $recipe['recipe_name']; ?>
     <br>
-  <?php } ?>
+  <?php endforeach; ?>
 
+    <br>
     <input type="submit" name="disp" value="参照">
     <input type="submit" name="add" value="追加">
     <input type="submit" name="edit" value="編集">
