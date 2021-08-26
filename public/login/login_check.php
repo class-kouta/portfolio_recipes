@@ -76,9 +76,9 @@ try{
   <?php } ?>
 
   <?php if($mail === '' || $pass === '' || password_verify($pass,$pass2) === false){ ?>
-    <form>
-      <input type="button" onclick="history.back()" value="戻る">
-    </form>
+
+    <a href="login.php">ログイン画面へ</a>
+
   <?php
 
   }else {

@@ -43,6 +43,9 @@ require_once(__DIR__ . '/../../../app/session.php');
 
       </form>
 
+      <a href="recipes_list.php">和食レシピ一覧へ</a>
+      <br>
+      <br>
 
   </body>
 </html>

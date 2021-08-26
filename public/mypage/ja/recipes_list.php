@@ -58,7 +58,7 @@ try{
   </form>
 
   <br>
-  <a href="../mypage.php">マイページへ</a>
+  <a href="../mypage.php">マイページ</a>
 
 
   </body>

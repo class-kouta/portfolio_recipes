@@ -50,10 +50,11 @@ try{
   <span><?= nl2br($text);?></span>
   <br>
   <br>
+  <br>
 
-  <form>
-    <input type="button" onclick="history.back()" value="戻る">
-  </form>
+  <a href="recipes_list.php">和食レシピ一覧</a>
+  <br>
+  <br>
 
   </body>
 </html>
