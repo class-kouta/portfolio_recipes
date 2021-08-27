@@ -32,25 +32,19 @@ $dbh = null;
   <br>
   <br>
 
-  <form method="post" action="branch.php">
-
-  <?php foreach($recipes as $recipe): ?>
-    <input type="radio" name="code" value="<?= $recipe['code']; ?>">
-    <?= $recipe['recipe_name']; ?>
-    <br>
+  <?php foreach($recipes as $key => $recipe): ?>
+  <form method="post" name="form1" action="recipes_disp.php">
+    <input type="hidden" name="code" value="<?= $recipe['code']; ?>">
+    <a href="javascript:form1[<?= $key ?>].submit()"><?= $recipe['recipe_name'] ?></a>
+  </form>
+  <br>
   <?php endforeach; ?>
 
-    <br>
-    <input type="submit" name="disp" value="参照">
-    <input type="submit" name="add" value="追加">
-    <input type="submit" name="edit" value="編集">
-    <input type="submit" name="delete" value="削除">
-
-  </form>
-
+  <br>
+  <a href="recipes_add.php">追加</a>
+  <br>
   <br>
   <a href="../mypage.php">マイページ</a>
-
 
   </body>
 </html>

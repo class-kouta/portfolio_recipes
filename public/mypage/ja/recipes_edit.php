@@ -6,7 +6,7 @@ require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
 use App\Recipe;
 
-$code = $_GET['code'];
+$code = $_POST['code'];
 
 $dbh = Database::getInstance();
 $recipe = new Recipe($dbh);

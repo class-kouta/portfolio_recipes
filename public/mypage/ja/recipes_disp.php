@@ -3,9 +3,13 @@
 require_once(__DIR__ . '/../../../app/session.php');
 require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
+use App\Utils;
+use App\Token;
 use App\Recipe;
 
-$code = $_GET['code'];
+Token::create();
+
+$code = $_POST['code'];
 
 $dbh = Database::getInstance();
 $recipe = new Recipe($dbh);
@@ -40,11 +44,22 @@ $text = $rec['recipe_contents'];
   <span><?= nl2br($text);?></span>
   <br>
   <br>
-  <br>
+  <form method="post" action="recipes_edit.php">
+    <input type="submit" name="edit" value="編集">
+    <input type="hidden" name="code" value="<?= $code ?>">
+  </form>
 
+  <form method="post" action="recipes_delete_done.php">
+    <button class="delete">DELETE</button>
+    <input type="hidden" name="code" value="<?= $code ?>">
+    <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
+  </form>
+  <br>
+  <br>
   <a href="recipes_list.php">和食レシピ一覧</a>
   <br>
   <br>
 
+  <script src="../../js/main.js"></script>
   </body>
 </html>
