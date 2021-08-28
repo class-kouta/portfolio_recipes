@@ -22,23 +22,4 @@ $member->create($name,$mail,$pass);
 
 $dbh = null;
 
-?>
-
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <title>漢レシピ</title>
-  </head>
-  <body>
-
-    <span><?= $name ?>様</span>
-    <br>
-    <br>
-    <span>ご入会ありがとうございます。</span>
-    <br>
-    <br>
-    <a href="login.php">ログインはこちらから</a>
-
-  </body>
-</html>
+header('Location:sign_up_completed.html');
