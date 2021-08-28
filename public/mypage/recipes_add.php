@@ -50,8 +50,9 @@ $genre = $post['genre'];
 
       </form>
 
-      <form>
-        <input type="button" onclick="history.back()" value="戻る">
+      <form method="post" name="form1" action="recipes_list.php">
+        <input type="hidden" name="genre" value="<?= $genre ?>">
+        <a href="javascript:form1.submit()">戻る</a>
       </form>
 
       <br>

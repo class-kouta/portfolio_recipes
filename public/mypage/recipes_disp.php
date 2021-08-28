@@ -53,7 +53,7 @@ $text = $rec['recipe_contents'];
   </form>
 
   <form method="post" action="recipes_delete_done.php">
-    <button class="delete">DELETE</button>
+    <span class="delete">DELETE</span>
     <input type="hidden" name="code" value="<?= $code ?>">
     <input type="hidden" name="genre" value="<?= $genre ?>">
     <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
@@ -61,8 +61,9 @@ $text = $rec['recipe_contents'];
   <br>
   <br>
 
-  <form>
-    <input type="button" onclick="history.back()" value="戻る">
+  <form method="post" name="form1" action="recipes_list.php">
+    <input type="hidden" name="genre" value="<?= $genre ?>">
+    <a href="javascript:form1.submit()">レシピ一覧へ</a>
   </form>
   <br>
   <br>

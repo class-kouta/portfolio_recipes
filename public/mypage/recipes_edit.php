@@ -44,11 +44,21 @@ $text = $rec['recipe_contents'];
     <br>
     <textarea name="text" id="" cols="30" rows="10"><?= $text ?></textarea>
     <br>
-    <input type="button" onclick="history.back()" value="戻る">
+    <!-- <input type="button" onclick="history.back()" value="戻る"> -->
     <input type="submit" value="確認">
     <input type="hidden" name="code" value="<?= $code ?>">
     <input type="hidden" name="genre" value="<?= $genre ?>">
   </form>
+
+  <br>
+  <br>
+  <form method="post" name="form1" action="recipes_disp.php">
+    <input type="hidden" name="code" value="<?= $code ?>">
+    <input type="hidden" name="genre" value="<?= $genre ?>">
+    <a href="javascript:form1.submit()">戻る</a>
+  </form>
+  <br>
+  <br>
 
   </body>
 </html>

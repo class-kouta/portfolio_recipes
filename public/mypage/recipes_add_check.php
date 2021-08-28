@@ -45,20 +45,22 @@ Token::create();
     <br>
   <?php } ?>
 
-  <?php if($name === '' || $text === ''){ ?>
-    <form>
-      <input type="button" onclick="history.back()" value="戻る">
-    </form>
-  <?php }else{ ?>
+  <?php if($name !== '' && $text !== ''){ ?>
     <form method="post" action="recipes_add_done.php">
       <input type="hidden" name="name" value="<?= $name ?>">
       <input type="hidden" name="text" value="<?= $text ?>">
       <input type="hidden" name="genre" value="<?= $genre ?>">
       <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
-      <input type="button" onclick="history.back()" value="戻る">
       <input type="submit" value="OK">
     </form>
   <?php } ?>
+
+  <br>
+  <br>
+  <form method="post" name="form1" action="recipes_add.php">
+    <input type="hidden" name="genre" value="<?= $genre ?>">
+    <a href="javascript:form1.submit()">戻る</a>
+  </form>
 
   </body>
 </html>
