@@ -31,7 +31,7 @@ $dbh = null;
 
   <?php require_once(__DIR__ . '/login_user.php'); ?>
 
-  <span>和食レシピ一覧</span>
+  <span>レシピ一覧</span>
   <br>
   <br>
 
