@@ -14,6 +14,7 @@ $post = Utils::sanitize($_POST);
 $code = $post['code'];
 $name = $post['name'];
 $text = $post['text'];
+$genre = $post['genre'];
 
 $dbh = Database::getInstance();
 $recipe = new Recipe($dbh);
@@ -46,7 +47,11 @@ $dbh = null;
   <span><?= nl2br($text) ?></span>
   <br>
   <br>
-  <a href="recipes_list.php">レシピ一覧へ</a>
+  <form method="post" name="form1" action="recipes_list.php">
+    <input type="hidden" name="genre" value="<?= $genre ?>">
+    <a href="javascript:form1.submit()">レシピ一覧へ</a>
+  </form>
+  <!-- <a href="recipes_list.php">レシピ一覧へ</a> -->
 
   </body>
 </html>

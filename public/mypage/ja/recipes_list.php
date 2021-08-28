@@ -4,9 +4,12 @@ require_once(__DIR__ . '/../../../app/session.php');
 
 require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
+use App\Utils;
 use App\Recipe;
 
-$genre = 1;
+$post = Utils::sanitize($_POST);
+$genre = $post['genre'];
+
 $id = $_SESSION['id'];
 
 $dbh = Database::getInstance();
@@ -35,13 +38,18 @@ $dbh = null;
   <?php foreach($recipes as $key => $recipe): ?>
   <form method="post" name="form1" action="recipes_disp.php">
     <input type="hidden" name="code" value="<?= $recipe['code']; ?>">
+    <input type="hidden" name="genre" value="<?= $genre ?>">
     <a href="javascript:form1[<?= $key ?>].submit()"><?= $recipe['recipe_name'] ?></a>
   </form>
   <br>
   <?php endforeach; ?>
 
   <br>
-  <a href="recipes_add.php">追加</a>
+  <!-- <a href="recipes_add.php">追加</a> -->
+  <form method="post" name="form2" action="recipes_add.php">
+    <input type="hidden" name="genre" value="<?= $genre ?>">
+    <a href="javascript:form2.submit()">追加</a>
+  </form>
   <br>
   <br>
   <a href="../mypage.php">マイページ</a>

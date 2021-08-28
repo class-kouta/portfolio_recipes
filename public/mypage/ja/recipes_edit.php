@@ -4,9 +4,12 @@ require_once(__DIR__ . '/../../../app/session.php');
 
 require_once(__DIR__ . '/../../../app/config.php');
 use App\Database;
+use App\Utils;
 use App\Recipe;
 
-$code = $_POST['code'];
+$post = Utils::sanitize($_POST);
+$code = $post['code'];
+$genre = $post['genre'];
 
 $dbh = Database::getInstance();
 $recipe = new Recipe($dbh);
@@ -43,7 +46,8 @@ $text = $rec['recipe_contents'];
     <br>
     <input type="button" onclick="history.back()" value="戻る">
     <input type="submit" value="確認">
-    <input type="hidden" name="code" value="<?= $code; ?>">
+    <input type="hidden" name="code" value="<?= $code ?>">
+    <input type="hidden" name="genre" value="<?= $genre ?>">
   </form>
 
   </body>

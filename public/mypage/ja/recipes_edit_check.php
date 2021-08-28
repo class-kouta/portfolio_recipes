@@ -10,6 +10,7 @@ $post = Utils::sanitize($_POST);
 $code = $post['code'];
 $name= $post['name'];
 $text = $post['text'];
+$genre = $post['genre'];
 
 Token::create();
 
@@ -60,6 +61,7 @@ Token::create();
       <input type="hidden" name="code" value="<?= $code ?>">
       <input type="hidden" name="name" value="<?= $name ?>">
       <input type="hidden" name="text" value="<?= $text ?>">
+      <input type="hidden" name="genre" value="<?= $genre ?>">
       <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
       <br>
       <input type="button" onclick="history.back()" value="戻る">

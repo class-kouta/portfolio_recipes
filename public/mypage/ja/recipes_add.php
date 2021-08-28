@@ -1,6 +1,11 @@
 <?php
 
 require_once(__DIR__ . '/../../../app/session.php');
+require_once(__DIR__ . '/../../../app/config.php');
+use App\Utils;
+
+$post = Utils::sanitize($_POST);
+$genre = $post['genre'];
 
 ?>
 
@@ -37,13 +42,18 @@ require_once(__DIR__ . '/../../../app/session.php');
           </div>
         </div>
 
+        <input type="hidden" name="genre" value="<?= $genre ?>">
+
         <div class="my-4">
           <input type="submit" class="btn btn-info" value="レシピを追加">
         </div>
 
       </form>
 
-      <a href="recipes_list.php">和食レシピ一覧へ</a>
+      <form>
+        <input type="button" onclick="history.back()" value="戻る">
+      </form>
+      <!-- <a href="recipes_list.php">和食レシピ一覧へ</a> -->
       <br>
       <br>
 

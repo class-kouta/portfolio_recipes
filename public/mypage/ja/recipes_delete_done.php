@@ -18,4 +18,4 @@ $recipe->destroy($code);
 
 $dbh = null;
 
-header('Location:recipes_list.php');
+header('Location:recipes_list.php', true, 307);  //$_POSTの値を維持

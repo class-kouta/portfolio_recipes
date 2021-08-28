@@ -9,7 +9,9 @@ use App\Recipe;
 
 Token::create();
 
-$code = $_POST['code'];
+$post = Utils::sanitize($_POST);
+$code = $post['code'];
+$genre = $post['genre'];
 
 $dbh = Database::getInstance();
 $recipe = new Recipe($dbh);
@@ -47,16 +49,21 @@ $text = $rec['recipe_contents'];
   <form method="post" action="recipes_edit.php">
     <input type="submit" name="edit" value="編集">
     <input type="hidden" name="code" value="<?= $code ?>">
+    <input type="hidden" name="genre" value="<?= $genre ?>">
   </form>
 
   <form method="post" action="recipes_delete_done.php">
     <button class="delete">DELETE</button>
     <input type="hidden" name="code" value="<?= $code ?>">
+    <input type="hidden" name="genre" value="<?= $genre ?>">
     <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
   </form>
   <br>
   <br>
-  <a href="recipes_list.php">和食レシピ一覧</a>
+  <!-- <a href="recipes_list.php">和食レシピ一覧</a> -->
+  <form>
+    <input type="button" onclick="history.back()" value="戻る">
+  </form>
   <br>
   <br>
 

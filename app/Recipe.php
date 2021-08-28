@@ -12,15 +12,16 @@ class Recipe
     $this->dbh = $dbh;
   }
 
-  public function create($name,$text)
+  public function create($name,$text,$genre)
   {
     try{
 
-      $sql = 'INSERT INTO recipes(user_id,recipe_name,recipe_contents,genre) VALUES (?,?,?,1)';
+      $sql = 'INSERT INTO recipes(user_id,recipe_name,recipe_contents,genre) VALUES (?,?,?,?)';
       $stmt = $this->dbh->prepare($sql);
       $data[] = $_SESSION['id'];
       $data[] = $name;
       $data[] = $text;
+      $data[] = $genre;
       $stmt->execute($data);
 
     }catch(\PDOException $e){

@@ -12,11 +12,12 @@ Token::validate();
 $post = Utils::sanitize($_POST);
 $name = $post['name'];
 $text = $post['text'];
+$genre = $post['genre'];
 
 $dbh = Database::getInstance();
 $recipe = new Recipe($dbh);
-$recipe->create($name,$text);
+$recipe->create($name,$text,$genre);
 
 $dbh = null;
 
-header('Location:recipes_list.php');
+header('Location:recipes_list.php', true, 307);  //$_POSTの値を維持
