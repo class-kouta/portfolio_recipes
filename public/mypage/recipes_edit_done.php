@@ -1,8 +1,8 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php');
+require_once(__DIR__ . '/../../app/session.php');
 
-require_once(__DIR__ . '/../../../app/config.php');
+require_once(__DIR__ . '/../../app/config.php');
 use App\Database;
 use App\Utils;
 use App\Token;
@@ -34,7 +34,7 @@ $dbh = null;
 
   <body>
 
-  <?php require_once(__DIR__ . '/../login_user.php'); ?>
+  <?php require_once(__DIR__ . '/login_user.php'); ?>
 
   <span> 次のとおり修正しました</span>
   <br>
@@ -51,7 +51,6 @@ $dbh = null;
     <input type="hidden" name="genre" value="<?= $genre ?>">
     <a href="javascript:form1.submit()">レシピ一覧へ</a>
   </form>
-  <!-- <a href="recipes_list.php">レシピ一覧へ</a> -->
 
   </body>
 </html>

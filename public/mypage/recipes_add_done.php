@@ -1,7 +1,7 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php');
-require_once(__DIR__ . '/../../../app/config.php');
+require_once(__DIR__ . '/../../app/session.php');
+require_once(__DIR__ . '/../../app/config.php');
 use App\Database;
 use App\Utils;
 use App\Token;
@@ -10,11 +10,13 @@ use App\Recipe;
 Token::validate();
 
 $post = Utils::sanitize($_POST);
-$code = $post['code'];
+$name = $post['name'];
+$text = $post['text'];
+$genre = $post['genre'];
 
 $dbh = Database::getInstance();
 $recipe = new Recipe($dbh);
-$recipe->destroy($code);
+$recipe->create($name,$text,$genre);
 
 $dbh = null;
 

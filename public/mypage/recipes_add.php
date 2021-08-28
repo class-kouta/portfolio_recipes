@@ -1,7 +1,7 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php');
-require_once(__DIR__ . '/../../../app/config.php');
+require_once(__DIR__ . '/../../app/session.php');
+require_once(__DIR__ . '/../../app/config.php');
 use App\Utils;
 
 $post = Utils::sanitize($_POST);
@@ -18,7 +18,7 @@ $genre = $post['genre'];
   </head>
   <body>
 
-  <?php require_once(__DIR__ . '/../login_user.php'); ?>
+  <?php require_once(__DIR__ . '/login_user.php'); ?>
 
     <main class="container-sm mx-2 my-3">
 
@@ -53,7 +53,7 @@ $genre = $post['genre'];
       <form>
         <input type="button" onclick="history.back()" value="戻る">
       </form>
-      <!-- <a href="recipes_list.php">和食レシピ一覧へ</a> -->
+
       <br>
       <br>
 

@@ -1,8 +1,8 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php');
+require_once(__DIR__ . '/../../app/session.php');
 
-require_once(__DIR__ . '/../../../app/config.php');
+require_once(__DIR__ . '/../../app/config.php');
 use App\Database;
 use App\Utils;
 use App\Recipe;
@@ -29,7 +29,7 @@ $dbh = null;
   </head>
   <body>
 
-  <?php require_once(__DIR__ . '/../login_user.php'); ?>
+  <?php require_once(__DIR__ . '/login_user.php'); ?>
 
   <span>和食レシピ一覧</span>
   <br>
@@ -45,14 +45,13 @@ $dbh = null;
   <?php endforeach; ?>
 
   <br>
-  <!-- <a href="recipes_add.php">追加</a> -->
   <form method="post" name="form2" action="recipes_add.php">
     <input type="hidden" name="genre" value="<?= $genre ?>">
     <a href="javascript:form2.submit()">追加</a>
   </form>
   <br>
   <br>
-  <a href="../mypage.php">マイページ</a>
+  <a href="mypage.php">マイページ</a>
 
   </body>
 </html>

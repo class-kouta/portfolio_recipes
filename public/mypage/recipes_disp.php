@@ -1,7 +1,7 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php');
-require_once(__DIR__ . '/../../../app/config.php');
+require_once(__DIR__ . '/../../app/session.php');
+require_once(__DIR__ . '/../../app/config.php');
 use App\Database;
 use App\Utils;
 use App\Token;
@@ -34,7 +34,7 @@ $text = $rec['recipe_contents'];
   </head>
   <body>
 
-  <?php require_once(__DIR__ . '/../login_user.php'); ?>
+  <?php require_once(__DIR__ . '/login_user.php'); ?>
 
   <span>レシピ名：<?= $name ?></span>
   <br>
@@ -60,13 +60,13 @@ $text = $rec['recipe_contents'];
   </form>
   <br>
   <br>
-  <!-- <a href="recipes_list.php">和食レシピ一覧</a> -->
+
   <form>
     <input type="button" onclick="history.back()" value="戻る">
   </form>
   <br>
   <br>
 
-  <script src="../../js/main.js"></script>
+  <script src="../js/main.js"></script>
   </body>
 </html>

@@ -3,6 +3,6 @@
     <p><?= $_SESSION['name']?> さん ログイン中</p>
   </div>
   <div class="d-flex flex-row-reverse ">
-    <a href="../../login/logout.php">ログアウト</a>
+    <a href="../login/logout.php">ログアウト</a>
   </div>
 </div>

@@ -1,8 +1,8 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php');
+require_once(__DIR__ . '/../../app/session.php');
 
-require_once(__DIR__ . '/../../../app/config.php');
+require_once(__DIR__ . '/../../app/config.php');
 use App\Utils;
 use App\Token;
 
@@ -26,7 +26,7 @@ Token::create();
 
   <body>
 
-  <?php require_once(__DIR__ . '/../login_user.php'); ?>
+  <?php require_once(__DIR__ . '/login_user.php'); ?>
 
   <?php if($name === ''){ ?>
     <span>レシピ名が入力されていません</span>

@@ -1,8 +1,8 @@
 <?php
 
-require_once(__DIR__ . '/../../../app/session.php');
+require_once(__DIR__ . '/../../app/session.php');
 
-require_once(__DIR__ . '/../../../app/config.php');
+require_once(__DIR__ . '/../../app/config.php');
 use App\Database;
 use App\Utils;
 use App\Recipe;
@@ -32,7 +32,7 @@ $text = $rec['recipe_contents'];
   </head>
   <body>
 
-  <?php require_once(__DIR__ . '/../login_user.php'); ?>
+  <?php require_once(__DIR__ . '/login_user.php'); ?>
 
   <form method="post" action="recipes_edit_check.php">
     <span>レシピ名</span>
