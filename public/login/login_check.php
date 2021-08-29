@@ -39,30 +39,26 @@ if(!isset($result['password'])){
   </head>
   <body>
 
+  <section class="container-sm mx-3 my-5">
   <?php if(empty($mail)){ ?>
-    <span>メールアドレス：入力されていません。</span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 text-danger">メールアドレスが入力されていません。</p>
   <?php } ?>
 
   <?php if(empty($pass)){ ?>
-    <span>パスワード：入力されていません。</span>
-    <br>
-    <br>
-  <?php } ?>
-
-  <?php if(password_verify($pass,$pass2) === false){ ?>
-    <span>メールアドレス または パスワード が間違っています。</span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 text-danger">パスワードが入力されていません。</p>
+  <?php }elseif(password_verify($pass,$pass2) === false){ ?>
+    <p class="border-bottom border-2 text-danger">メールアドレス または パスワード が間違っています。</p>
   <?php } ?>
 
   <?php if($mail === '' || $pass === '' || password_verify($pass,$pass2) === false){ ?>
 
-    <a href="login.php">ログイン画面へ</a>
+    <div class="mt-5">
+      <a href="login.php">ログイン画面へ</a>
+    </div>
+
+  </section>
 
   <?php
-
   }else {
     $_SESSION['login'] = 1;
     $_SESSION['id'] = $result['id'];
@@ -71,8 +67,6 @@ if(!isset($result['password'])){
     header('Location:../mypage/mypage.php');
     exit();
   }
-
   ?>
-
 </body>
 </html>

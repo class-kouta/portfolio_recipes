@@ -36,21 +36,23 @@ $dbh = null;
 
   <?php require_once(__DIR__ . '/login_user.php'); ?>
 
-  <span> 次のとおり修正しました</span>
-  <br>
-  <br>
-  <span>レシピ名：<?= $name ?></span>
-  <br>
-  <br>
-  <span>レシピ内容</span>
-  <br>
-  <span><?= nl2br($text) ?></span>
-  <br>
-  <br>
-  <form method="post" name="form1" action="recipes_list.php">
-    <input type="hidden" name="genre" value="<?= $genre ?>">
-    <a href="javascript:form1.submit()">レシピ一覧へ</a>
-  </form>
+  <section class="container-sm mx-3">
+
+    <div class="mb-3">
+      <h2 class="fs-5 border-bottom border-2"><?= $name ?></h2>
+      <div class="border-bottom border-2 px-2 pt-2 pb-4">
+        <p><?= nl2br($text) ?></p>
+      </div>
+    </div>
+
+    <p class="mb-4"> 上記のとおり修正しました</p>
+
+    <form method="post" name="form1" action="recipes_list.php">
+      <input type="hidden" name="genre" value="<?= $genre ?>">
+      <a href="javascript:form1.submit()">レシピ一覧へ</a>
+    </form>
+
+  </section>
 
   </body>
 </html>

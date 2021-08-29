@@ -28,49 +28,42 @@ Token::create();
 
   <?php require_once(__DIR__ . '/login_user.php'); ?>
 
+  <section class="container-sm mx-3">
+
+  <div class="mb-3">
   <?php if($name === ''){ ?>
-    <span>レシピ名が入力されていません</span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 text-danger">レシピ名が入力されていません</p>
   <?php } else{ ?>
-    <span>レシピ名：<?= $name ?></span>
-    <br>
-    <br>
+    <h2 class="fs-5 border-bottom border-2">レシピ名：<?= $name ?></h2>
   <?php } ?>
 
   <?php if($text === ''){ ?>
-    <span>レシピ内容が入力されていません</span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 px-2 pt-2 pb-4 text-danger">レシピ内容が入力されていません</p>
   <?php } else{ ?>
-    <span>レシピ内容</span>
-    <br>
-    <span><?= nl2br($text) ?></span>
-    <br>
-    <br>
+    <div class="border-bottom border-2 px-2 pt-2 pb-4">
+      <p><?= nl2br($text) ?></p>
+    </div>
   <?php } ?>
+  </div>
 
   <?php if($name !== '' && $text !== ''){ ?>
-    <span> 上記のとおり変更します。</span>
-    <br>
     <form method="post" action="recipes_edit_done.php">
       <input type="hidden" name="code" value="<?= $code ?>">
       <input type="hidden" name="name" value="<?= $name ?>">
       <input type="hidden" name="text" value="<?= $text ?>">
       <input type="hidden" name="genre" value="<?= $genre ?>">
       <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
-      <br>
-      <input type="submit" value="OK">
+      <input type="submit" class="btn btn-outline-success" value="変更する">
     </form>
   <?php } ?>
 
-  <br>
-  <br>
-  <form method="post" name="form1" action="recipes_edit.php">
+  <form method="post" name="form1" action="recipes_edit.php" class="mt-3">
     <input type="hidden" name="code" value="<?= $code ?>">
     <input type="hidden" name="genre" value="<?= $genre ?>">
     <a href="javascript:form1.submit()">戻る</a>
   </form>
+
+  </section>
 
   </body>
 </html>

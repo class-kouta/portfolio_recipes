@@ -22,59 +22,40 @@ Token::create();
   <head>
     <meta charset="UTF-8">
     <title>漢レシピ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   </head>
   <body>
 
+  <section class="container-sm mx-3 my-5">
   <?php if(empty($name)){ ?>
-    <span>ニックネーム：入力されていません。</span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 text-danger">ニックネームが入力されていません。</p>
   <?php } else if(5 < mb_strlen($name)){ ?>
-    <span>ニックネーム：５文字以内で入力してください</span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 text-danger">ニックネームは５文字以内で入力してください</p>
   <?php } else{ ?>
-    <span>ニックネーム：<?= $name ?></span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 text-primary">ニックネーム：<?= $name ?></p>
   <?php } ?>
 
   <?php if(empty($mail)){ ?>
-    <span>メールアドレス：入力されていません</span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 text-danger">メールアドレスが入力されていません</p>
   <?php } else if(!filter_var($mail, FILTER_VALIDATE_EMAIL)){ ?>
-    <span>メールアドレス：正しい形式で入力してください</span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 text-danger">メールアドレスを正しい形式で入力してください</p>
   <?php } else{ ?>
-    <span>メールアドレス：<?= $mail ?></span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 text-primary">メールアドレス：<?= $mail ?></p>
   <?php } ?>
 
   <?php if($pass ===''){ ?>
-    <span>パスワード：入力されていません</span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 text-danger">パスワードが入力されていません</p>
   <?php } else if ($pass !== $pass2){ ?>
-    <span>パスワード：一致しません</span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 text-danger">パスワードが一致しません</p>
   <?php } else { ?>
-    <span>パスワード：<?= str_repeat('*', strlen($pass)) ?></span>
-    <br>
-    <br>
+    <p class="border-bottom border-2 text-primary">パスワード：<?= str_repeat('*', strlen($pass)) ?></p>
   <?php } ?>
 
-  <?php if(empty($name) || empty($mail) || !filter_var($mail, FILTER_VALIDATE_EMAIL) || empty($pass) || $pass !== $pass2){ ?>
-    <form>
-      <input type="button" onclick="history.back()" value="戻る">
-    </form>
-  <?php }else{ ?>
-    以上の内容でよろしければ、新規登録ボタンを押してください。
-    <br>
-    <br>
+  <?php if(!empty($name) && !empty($mail) && filter_var($mail, FILTER_VALIDATE_EMAIL) && !empty($pass) && $pass === $pass2){ ?>
+
+    <div class="mt-4">
+      <p>以上の内容でよろしければ、新規登録ボタンを押してください。</p>
+    </div>
 
     <?php $pass = password_hash($pass, PASSWORD_DEFAULT); ?>
     <form method="post" action="sign_up_done.php">
@@ -82,14 +63,16 @@ Token::create();
       <input type="hidden" name="mail" value="<?= $mail ?>">
       <input type="hidden" name="pass" value="<?= $pass ?>">
       <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
-      <input type="submit" value="新規登録">
+      <input type="submit" class="btn btn-outline-success" value="新規登録">
     </form>
 
-    <br>
-    <br>
-    <a href="sign_up.html">入力画面に戻る</a>
+    <?php } ?>
 
-  <?php } ?>
+    <div class="mt-5">
+      <a href="sign_up.html">入力画面に戻る</a>
+    </div>
+
+  </section>
 
   </body>
 </html>

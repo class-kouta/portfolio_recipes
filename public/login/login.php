@@ -20,33 +20,30 @@ Token::create();
   </head>
   <body>
 
-    <main class="container-sm mx-2 my-3">
+    <section class="container-sm mx-2 my-3">
+
       <div class="mb-5">
-        <h1 class="fs-3 text-primary">会員ログイン</h1>
+        <h1 class="fs-4 border-bottom border-2">会員ログイン</h2>
       </div>
 
       <form method="post" action="login_check.php">
 
-        <div class="mb-3">
+        <div class="mb-3 form-group row">
           <label for="mail" class="form-label">メールアドレス</label>
-          <div class="row">
-            <div class="col-4">
-              <input type="text" name="mail" class="form-control" id="mail" autocomplete="off">
-            </div>
+          <div class="col-6">
+            <input type="text" name="mail" class="form-control" id="mail" autocomplete="off">
           </div>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-4 form-group row">
           <label for="pass" class="form-label">パスワード</label>
-          <div class="row">
-            <div class="col-4">
-              <input type="password" name="pass" class="form-control" id="pass" rows="3">
-            </div>
+          <div class="col-6">
+            <input type="password" name="pass" class="form-control" id="pass" rows="3">
           </div>
         </div>
 
-        <div class="my-4">
-          <input type="submit" class="btn btn-info" value="ログイン">
+        <div class="mb-5">
+          <input type="submit" class="btn btn-outline-primary" value="ログイン">
         </div>
 
         <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
@@ -55,7 +52,7 @@ Token::create();
 
       <a href="sign_up.html">新規登録はこちら</a>
 
-    </main>
+    </section>
 
   </body>
 </html>

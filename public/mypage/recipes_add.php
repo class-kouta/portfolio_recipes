@@ -20,14 +20,12 @@ $genre = $post['genre'];
 
   <?php require_once(__DIR__ . '/login_user.php'); ?>
 
-    <main class="container-sm mx-2 my-3">
+    <section class="container-sm mx-3">
 
       <form method="post" action="recipes_add_check.php">
-
-        <div class="mb-3">
-          <label for="name" class="form-label">レシピ名</label>
-          <div class="row">
-            <div class="col-4">
+          <div class="mb-3 form-group row">
+            <label for="name" class="form-label">レシピ名</label>
+            <div class="col-6">
               <input type="text" name="name" class="form-control" id="name" autocomplete="off">
             </div>
           </div>
@@ -35,11 +33,7 @@ $genre = $post['genre'];
 
         <div class="mb-3">
           <label for="text" class="form-label">レシピ内容</label>
-          <div class="row">
-            <div class="col-7">
-              <textarea name="text" class="form-control" id="text" rows="20" ></textarea>
-            </div>
-          </div>
+          <textarea name="text" class="form-control" id="text" rows="15" ></textarea>
         </div>
 
         <input type="hidden" name="genre" value="<?= $genre ?>">
@@ -55,8 +49,7 @@ $genre = $post['genre'];
         <a href="javascript:form1.submit()">戻る</a>
       </form>
 
-      <br>
-      <br>
+    </section>
 
   </body>
 </html>
