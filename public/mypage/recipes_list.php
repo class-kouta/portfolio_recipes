@@ -56,8 +56,14 @@ $dbh = null;
           <form method="post" name="form1" action="recipes_disp.php">
             <input type="hidden" name="code" value="<?= $recipe['code']; ?>">
             <input type="hidden" name="genre" value="<?= $genre ?>">
-            <a href="javascript:form1[<?= $key ?>].submit()" class="text-decoration-none"><?= $recipe['recipe_name'] ?></a>
-          </form>
+
+            <?php if(count($recipes) === 1){ ?>
+              <a href="javascript:form1.submit()" class="text-decoration-none"><?= $recipe['recipe_name'] ?></a>
+            <?php }else{ ?>
+              <a href="javascript:form1[<?= $key ?>].submit()" class="text-decoration-none"><?= $recipe['recipe_name'] ?></a>
+            <?php } ?>
+
+            </form>
         </li>
       <?php endforeach; ?>
       </ul>
