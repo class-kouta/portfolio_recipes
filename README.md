@@ -32,7 +32,7 @@
 - PHP7.4.27
 
 #### インフラ
-- MySQL
+- MySQL5.7.38
 
 ## DB設計
 ![ER図（PHP） drawio](https://user-images.githubusercontent.com/78774242/176359595-863da3a2-e5c0-43ee-bd31-6c8630e9d116.png)
