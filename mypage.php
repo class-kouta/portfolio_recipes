@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../app/session.php');
+require_once(__DIR__ . '/app/session.php');
 
 ?>
 
@@ -13,26 +13,26 @@ require_once(__DIR__ . '/../../app/session.php');
   </head>
   <body>
 
-  <?php require_once(__DIR__ . '/login_user.php'); ?>
+  <?php require_once(__DIR__ . '/public/mypage/login_user.php'); ?>
 
   <section class="row mt-5 d-flex justify-content-evenly">
 
     <div class="col-3 d-flex justify-content-center">
-      <form method="post" name="form1" action="recipes_list.php" >
+      <form method="post" name="form1" action="/portfolio_recipes/public/mypage/recipes_list.php" >
         <input type="hidden" name="genre" value="1">
           <a href="javascript:form1.submit()" class="btn btn-outline-success fs-3 py-4 px-5">和食</a>
       </form>
     </div>
 
     <div class="col-3 d-flex justify-content-center">
-      <form method="post" name="form2" action="recipes_list.php">
+      <form method="post" name="form2" action="/portfolio_recipes/public/mypage/recipes_list.php">
         <input type="hidden" name="genre" value="2">
           <a href="javascript:form2.submit()" class="btn btn-outline-primary fs-3 py-4 px-5">洋食</a>
       </form>
     </div>
 
     <div class="col-3 d-flex justify-content-center">
-      <form method="post" name="form3" action="recipes_list.php">
+      <form method="post" name="form3" action="/portfolio_recipes/public/mypage/recipes_list.php">
         <input type="hidden" name="genre" value="3">
           <a href="javascript:form3.submit()" class="btn btn-outline-danger fs-3 py-4 px-5">中華</a>
       </form>

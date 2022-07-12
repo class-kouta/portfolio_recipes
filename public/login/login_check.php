@@ -64,7 +64,7 @@ if(!isset($result['password'])){
     $_SESSION['id'] = $result['id'];
     $_SESSION['name'] = $result['name'];
 
-    header('Location:../mypage/mypage.php');
+    header('Location:/portfolio_recipes/mypage.php');
     exit();
   }
   ?>
