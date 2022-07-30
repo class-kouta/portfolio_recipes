@@ -64,7 +64,9 @@ if(!isset($result['password'])){
     $_SESSION['id'] = $result['id'];
     $_SESSION['name'] = $result['name'];
 
-    header('Location:/portfolio_recipes/mypage.php');
+    // MAMP環境と本番環境でドキュメントルート異なる
+    // header('Location:/portfolio_recipes/mypage.php');
+    header('Location:/mypage.php');
     exit();
   }
   ?>

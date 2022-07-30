@@ -3,10 +3,12 @@
 session_start();
 session_regenerate_id();
 if(!isset($_SESSION['login'])){
-  echo'ログインされていません。';
-  echo '<br>';
-  echo '<br>';
-  echo '<a href="/portfolio_recipes/public/login/login.php">ログイン画面へ</a><br>';
+  echo <<<EOT
+  ログインされていません
+  <br>
+  <br>
+  <a href="/public/login/login.php">ログイン画面へ</a>
+  <br>
+  EOT;
   exit();
-
 }
