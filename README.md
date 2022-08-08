@@ -4,7 +4,7 @@
 
 
 ## URL
-https://myrecipenote.net/
+現在封鎖中
 
 
 ## 開発した経緯
